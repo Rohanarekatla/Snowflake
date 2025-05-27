@@ -1,0 +1,959 @@
+# SnowPro Core **❄️**
+
+# Certification Study Notes
+
+## Exam Overview: COF-C02
+
+**Exam Details:**
+
+- **100 Questions** | **115 Minutes** | **Passing Score: 750/1000**
+- **Cost:** $175 USD | **Languages:** English, Japanese, Korean
+- **Question Types:** Multiple Choice & Multiple Select
+- **No Prerequisites Required**
+
+---
+
+## SECTION 1: SNOWFLAKE AI DATA CLOUD FEATURES & ARCHITECTURE (25% - Highest Weight!)
+
+### 🏗️ **Snowflake Architecture - The 3-Layer Foundation**
+
+### **Memory Aid: "CSS" = Cloud, Services, Storage**
+
+```
+┌─────────────────────────────────────┐
+│        CLOUD SERVICES LAYER        │  ← Global Services & Metadata
+├─────────────────────────────────────┤
+│         COMPUTE LAYER              │  ← Virtual Warehouses (VW)
+├─────────────────────────────────────┤
+│         STORAGE LAYER              │  ← Databases, Tables, Stages
+└─────────────────────────────────────┘
+
+```
+
+### **1.1 Storage Layer - "Where Data Lives"**
+
+| Component | Description | Key Points |
+| --- | --- | --- |
+| **Micro-partitions** | Data stored in compressed, columnar format | • 50-500MB uncompressed<br>• Automatic clustering<br>• Immutable files |
+| **File Formats** | Structured & Semi-structured | • JSON, AVRO, PARQUET, XML<br>• CSV, TSV, PSV |
+| **Stages** | Data loading locations | • Internal: `@~` `@%` `@stage_name`<br>• External: S3, Azure, GCS |
+
+### **1.2 Compute Layer - "Where Work Happens"**
+
+### **Virtual Warehouse Sizes & Credits (MUST MEMORIZE!)**
+
+| Size | Credits/Hour | Servers | Memory Aid |
+| --- | --- | --- | --- |
+| X-Small | 1 | 1 | **X**tra **S**mall = **1** Credit |
+| Small | 2 | 2 | **S**mall = **2** Credits |
+| Medium | 4 | 4 | **M**edium = **4** Credits |
+| Large | 8 | 8 | **L**arge = **8** Credits |
+| X-Large | 16 | 16 | **XL** = **16** Credits |
+| 2X-Large | 32 | 32 | **2XL** = **32** Credits |
+| 3X-Large | 64 | 64 | **3XL** = **64** Credits |
+| 4X-Large | 128 | 128 | **4XL** = **128** Credits |
+
+**Memory Trick:** Each size **doubles** the previous (except X-Small to Small)
+
+### **1.3 Cloud Services Layer - "The Brain"**
+
+- **Authentication & Access Control**
+- **Query Parsing & Optimization**
+- **Metadata Management**
+- **Infrastructure Management**
+
+### **🔥 Critical Architecture Facts for Exam:**
+
+1. **Separation of Storage & Compute** = Elastic scaling
+2. **Multi-cluster Shared Data** = Multiple warehouses can access same data simultaneously
+3. **Auto-suspend/Auto-resume** = Cost optimization
+4. **Cross-cloud replication** = Available across AWS, Azure, GCP
+
+---
+
+## **1.4 Snowflake Editions Comparison**
+
+| Feature | Standard | Enterprise | Business Critical | VPS |
+| --- | --- | --- | --- | --- |
+| **Time Travel** | 1 day | 90 days | 90 days | 90 days |
+| **Multi-cluster Warehouses** | ❌ | ✅ | ✅ | ✅ |
+| **Column-level Security** | ❌ | ✅ | ✅ | ✅ |
+| **Materialized Views** | ❌ | ✅ | ✅ | ✅ |
+| **Search Optimization** | ❌ | ✅ | ✅ | ✅ |
+| **HIPAA/PCI Compliance** | ❌ | ❌ | ✅ | ✅ |
+| **Customer-Managed Keys** | ❌ | ❌ | ✅ | ✅ |
+| **Private Connectivity** | ❌ | ❌ | ❌ | ✅ |
+
+**Memory Aid:** "SEMB-VPS" = Standard, Enterprise, Business Critical, VPS (increasing features)
+
+---
+
+## **1.5 Key Snowflake Unique Features**
+
+### **Zero-Copy Cloning Workflow:**
+
+```sql
+-- SYNTAX PATTERN TO MEMORIZE:
+CREATE <OBJECT_TYPE> <clone_name>
+CLONE <source_name>
+[AT (TIMESTAMP => '<timestamp>')];
+
+-- Examples:
+CREATE DATABASE prod_clone CLONE production;
+CREATE TABLE sales_backup CLONE sales AT (TIMESTAMP => '2024-01-15 10:00:00');
+
+```
+
+### **Time Travel Syntax Pattern:**
+
+```sql
+-- Time Travel Query Patterns:
+SELECT * FROM table_name AT (TIMESTAMP => 'timestamp');
+SELECT * FROM table_name AT (OFFSET => -seconds);
+SELECT * FROM table_name AT (STATEMENT => 'query_id');
+
+-- Undrop Syntax:
+UNDROP TABLE table_name;
+UNDROP SCHEMA schema_name;
+UNDROP DATABASE database_name;
+
+```
+
+---
+
+## SECTION 2: ACCOUNT ACCESS AND SECURITY (20% Weight)
+
+### 🔐 **Security Architecture Overview**
+
+### **2.1 RBAC (Role-Based Access Control) Hierarchy**
+
+```
+                ACCOUNTADMIN (God Mode)
+                      │
+              ┌───────┼───────┐
+              │               │
+         SECURITYADMIN    SYSADMIN
+              │               │
+         ┌────┴────┐     ┌────┴────┐
+    USERADMIN  Custom   CUSTOM   PUBLIC
+               Roles    ROLES    (Everyone)
+
+```
+
+### **2.2 Built-in Roles - "SAPU" Memory Aid**
+
+| Role | Privileges | Memory Aid |
+| --- | --- | --- |
+| **ACCOUNTADMIN** | Everything | **A**ll **A**ccess **A**lways |
+| **SECURITYADMIN** | User/Role management | **S**ecurity **S**tuff |
+| **SYSADMIN** | Warehouse/DB management | **S**ystem **S**tuff |
+| **USERADMIN** | User management only | **U**sers **U**nder me |
+| **PUBLIC** | Default for all users | **P**ublic **P**ermissions |
+
+### **2.3 Authentication Methods Table**
+
+| Method | Use Case | Configuration |
+| --- | --- | --- |
+| **Username/Password** | Basic auth | Default method |
+| **MFA** | Enhanced security | `ALTER USER SET MFA = TRUE` |
+| **SSO/SAML** | Enterprise integration | External IdP required |
+| **Key Pair** | API/Driver connections | RSA public/private keys |
+| **OAuth** | Third-party apps | External OAuth provider |
+
+### **2.4 Critical Security SQL Patterns**
+
+### **User Management Workflow:**
+
+```sql
+-- CREATE USER Pattern:
+CREATE USER username
+PASSWORD = 'password'
+DEFAULT_ROLE = role_name
+DEFAULT_WAREHOUSE = warehouse_name
+DEFAULT_NAMESPACE = 'database.schema'
+MUST_CHANGE_PASSWORD = TRUE;
+
+-- GRANT/REVOKE Pattern:
+GRANT ROLE role_name TO USER username;
+GRANT privilege ON object TO ROLE role_name;
+REVOKE privilege ON object FROM ROLE role_name;
+
+```
+
+### **Role Management Best Practices:**
+
+```sql
+-- Role Hierarchy Creation:
+CREATE ROLE data_analyst;
+CREATE ROLE data_scientist;
+GRANT ROLE data_analyst TO ROLE data_scientist;
+GRANT ROLE data_scientist TO ROLE sysadmin;
+
+```
+
+### **2.5 Network Security Features**
+
+### **Network Policies Syntax:**
+
+```sql
+CREATE NETWORK POLICY policy_name
+ALLOWED_IP_LIST = ('192.168.1.0/24', '10.0.0.0/8')
+BLOCKED_IP_LIST = ('192.168.1.99')
+COMMENT = 'Production access policy';
+
+-- Apply to account or user:
+ALTER ACCOUNT SET NETWORK_POLICY = policy_name;
+ALTER USER username SET NETWORK_POLICY = policy_name;
+
+```
+
+### **2.6 Object-Level Security**
+
+### **Column-Level Security (Enterprise+):**
+
+```sql
+-- Masking Policy Pattern:
+CREATE MASKING POLICY email_mask AS (val string)
+RETURNS string ->
+  CASE
+    WHEN CURRENT_ROLE() IN ('ANALYST') THEN val
+    ELSE REGEXP_REPLACE(val, '.+@', '*****@')
+  END;
+
+-- Apply masking:
+ALTER TABLE customers ALTER COLUMN email
+SET MASKING POLICY email_mask;
+
+```
+
+### **Row Access Policies:**
+
+```sql
+CREATE ROW ACCESS POLICY region_policy AS (region_column varchar)
+RETURNS BOOLEAN ->
+  region_column = CURRENT_USER() OR
+  IS_ROLE_IN_SESSION('ADMIN');
+
+```
+
+---
+
+## SECTION 3: PERFORMANCE CONCEPTS (15% Weight)
+
+### ⚡ **Performance Optimization Hierarchy**
+
+### **3.1 Query Performance Factors (Order of Impact)**
+
+1. **Warehouse Size** (Most Impact)
+2. **Data Clustering**
+3. **Query Optimization**
+4. **Caching** (Least Impact but Fastest)
+
+### **3.2 Caching Layers - "QRC" Memory Aid**
+
+| Cache Type | Duration | Scope | Reset When |
+| --- | --- | --- | --- |
+| **Query Result Cache** | 24 hours | Global (all users) | Data changes |
+| **Metadata Cache** | N/A | Global | DDL operations |
+| **Warehouse Cache** | Until suspend | Per-warehouse | Warehouse suspension |
+
+### **Cache Utilization Query:**
+
+```sql
+-- Check cache usage:
+SELECT query_id, total_elapsed_time, bytes_scanned,
+       percentage_scanned_from_cache
+FROM query_history()
+WHERE start_time >= DATEADD(hour, -1, CURRENT_TIMESTAMP());
+
+```
+
+### **3.3 Virtual Warehouse Scaling**
+
+### **Scaling Strategies Table:**
+
+| Scenario | Scale Up (Vertical) | Scale Out (Horizontal) |
+| --- | --- | --- |
+| **Complex Queries** | ✅ Increase warehouse size | ❌ Won't help much |
+| **High Concurrency** | ❌ Limited benefit | ✅ Multi-cluster warehouse |
+| **Large Data Scans** | ✅ More compute power | ❌ Same scan per node |
+| **Many Small Queries** | ❌ Waste of resources | ✅ More warehouses |
+
+### **Multi-Cluster Warehouse Configuration:**
+
+```sql
+CREATE WAREHOUSE analytics_wh WITH
+WAREHOUSE_SIZE = 'LARGE'
+AUTO_SUSPEND = 300
+AUTO_RESUME = TRUE
+MIN_CLUSTER_COUNT = 1
+MAX_CLUSTER_COUNT = 5
+SCALING_POLICY = 'STANDARD'; -- or 'ECONOMY'
+
+```
+
+### **3.4 Clustering & Micro-partitions**
+
+### **Clustering Key Guidelines:**
+
+- **Best Columns:** Date/timestamp, frequently filtered columns
+- **Avoid:** High cardinality (like IDs), frequently updated columns
+- **Max Recommended:** 3-4 columns per clustering key
+
+```sql
+-- Clustering Key Syntax:
+ALTER TABLE sales CLUSTER BY (order_date, region);
+
+-- Check clustering information:
+SELECT SYSTEM$CLUSTERING_INFORMATION('sales', '(order_date, region)');
+
+```
+
+### **3.5 Query Optimization Patterns**
+
+### **Performance Monitoring Queries:**
+
+```sql
+-- Find expensive queries:
+SELECT query_id, query_text, total_elapsed_time,
+       rows_examined, rows_returned
+FROM query_history()
+WHERE start_time >= DATEADD(day, -1, CURRENT_TIMESTAMP())
+ORDER BY total_elapsed_time DESC
+LIMIT 10;
+
+-- Warehouse credit usage:
+SELECT warehouse_name,
+       SUM(credits_used) as total_credits,
+       AVG(avg_running) as avg_concurrency
+FROM warehouse_metering_history
+WHERE start_time >= DATEADD(day, -7, CURRENT_TIMESTAMP())
+GROUP BY warehouse_name;
+
+```
+
+### **Query Profile Analysis Steps:**
+
+1. **Overall Performance** - Check total execution time
+2. **Most Expensive Node** - Identify bottleneck operations
+3. **Data Scanning** - Look for full table scans
+4. **Spillage** - Check for memory overflow to disk
+5. **Pruning** - Verify partition elimination
+
+### **3.6 Performance Best Practices Checklist**
+
+### **✅ DO's:**
+
+- Use appropriate warehouse size for workload
+- Implement clustering on filter columns
+- Use LIMIT for exploratory queries
+- Leverage result caching
+- Choose efficient data types
+- Use materialized views for complex aggregations
+
+### **❌ DON'Ts:**
+
+- Use SELECT * in production queries
+- Create clustering keys on high-cardinality columns
+- Keep warehouses running unnecessarily
+- Use functions in WHERE clauses on large tables
+- Ignore query profiles for slow queries
+
+---
+
+## 🎯 **Quick Exam Tips for Sections 1-3:**
+
+### **Memory Techniques:**
+
+1. **Architecture:** "CSS" = Cloud, Services, Storage (bottom to top)
+2. **Roles:** "SAPU" = SYSADMIN, ACCOUNTADMIN, PUBLIC, USERADMIN
+3. **Caching:** "QRC" = Query, Result, Cache
+4. **Editions:** "SEMB" = Standard, Enterprise, Business Critical
+
+### **High-Probability Exam Questions:**
+
+- Virtual warehouse credit consumption calculations
+- Role hierarchy and privilege inheritance
+- Time Travel retention periods by edition
+- Clustering key selection criteria
+- Authentication method comparisons
+- Cache utilization scenarios
+
+### **Must-Know Syntax Patterns:**
+
+- CLONE operations with AT/BEFORE
+- GRANT/REVOKE with TO/FROM
+- CREATE USER with all parameters
+- Warehouse sizing and scaling options
+- Masking and row access policies
+
+---
+
+## SECTION 4: DATA LOADING AND UNLOADING (10% Weight)
+
+### 📂 **Stage Types - "UTE" Memory Aid**
+
+### **4.1 Internal Stages (3 Types)**
+
+| Stage Type | Syntax | Description | Memory Aid |
+| --- | --- | --- | --- |
+| **User Stage** | `@~` | Each user gets one | **U**ser = **@~** |
+| **Table Stage** | `@%table_name` | Each table gets one | **T**able = **@%** |
+| **Named Stage** | `@stage_name` | Created explicitly | **N**amed = **@stage_name** |
+
+### **4.2 External Stages**
+
+- **AWS S3**: `s3://bucket/path/`
+- **Azure Blob**: `azure://account.blob.core.windows.net/container/path/`
+- **Google Cloud**: `gcs://bucket/path/`
+
+### **4.3 File Formats - Critical Syntax Patterns**
+
+### **Supported File Types:**
+
+```sql
+-- File Format Creation Pattern:
+CREATE FILE FORMAT format_name
+TYPE = 'CSV' | 'JSON' | 'PARQUET' | 'AVRO' | 'ORC' | 'XML'
+[format_specific_options];
+
+-- Common CSV Options:
+FIELD_DELIMITER = ','
+RECORD_DELIMITER = '\n'
+SKIP_HEADER = 1
+FIELD_OPTIONALLY_ENCLOSED_BY = '"'
+ESCAPE_CHARACTER = '\\'
+NULL_IF = ('NULL', 'null', '')
+ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE
+
+-- JSON Options:
+STRIP_OUTER_ARRAY = TRUE
+DATE_FORMAT = 'AUTO'
+TIME_FORMAT = 'AUTO'
+TIMESTAMP_FORMAT = 'AUTO'
+
+```
+
+### **4.4 COPY INTO Command - Master Syntax**
+
+### **Loading Data (COPY INTO table):**
+
+```sql
+-- Basic Pattern:
+COPY INTO [database.]schema.table_name
+FROM @stage_name/path/
+FILE_FORMAT = (FORMAT_NAME = 'format_name' | TYPE = 'CSV')
+PATTERN = '.*\.csv'
+ON_ERROR = 'CONTINUE' | 'SKIP_FILE' | 'ABORT_STATEMENT'
+PURGE = TRUE | FALSE
+FORCE = TRUE | FALSE;
+
+-- With Transformations:
+COPY INTO table_name (col1, col2, col3)
+FROM (
+    SELECT $1::VARCHAR, $2::NUMBER, $3::DATE
+    FROM @stage_name
+)
+FILE_FORMAT = (TYPE = 'CSV');
+
+```
+
+### **Unloading Data (COPY INTO stage):**
+
+```sql
+-- Basic Unload:
+COPY INTO @stage_name/path/
+FROM table_name
+FILE_FORMAT = (TYPE = 'CSV')
+HEADER = TRUE
+SINGLE = FALSE
+MAX_FILE_SIZE = 1000000;
+
+-- With Query:
+COPY INTO @stage_name/exported_data_
+FROM (
+    SELECT col1, col2
+    FROM table_name
+    WHERE condition
+)
+FILE_FORMAT = (TYPE = 'CSV')
+OVERWRITE = TRUE;
+
+```
+
+### **4.5 PUT and GET Commands (SnowSQL Only)**
+
+### **PUT (Upload from Local):**
+
+```sql
+-- Syntax Pattern:
+PUT file://local_path @stage_name
+AUTO_COMPRESS = TRUE | FALSE
+OVERWRITE = TRUE | FALSE;
+
+-- Examples:
+PUT file:///tmp/data.csv @my_stage
+PUT file://C:\data\*.csv @~ AUTO_COMPRESS=TRUE
+
+```
+
+### **GET (Download to Local):**
+
+```sql
+-- Syntax Pattern:
+GET @stage_name/file_name file://local_path;
+
+-- Examples:
+GET @my_stage/data.csv file:///tmp/
+GET @~sales_data.csv file://C:\downloads\
+
+```
+
+### **4.6 Snowpipe - Continuous Loading**
+
+### **Snowpipe Setup Pattern:**
+
+```sql
+-- Create Pipe:
+CREATE PIPE pipe_name
+AUTO_INGEST = TRUE
+AS
+COPY INTO table_name
+FROM @external_stage
+FILE_FORMAT = (TYPE = 'JSON');
+
+-- Check Pipe Status:
+SELECT SYSTEM$PIPE_STATUS('pipe_name');
+
+-- Refresh Pipe:
+ALTER PIPE pipe_name REFRESH;
+
+```
+
+### **4.7 Data Loading Error Handling**
+
+### **Error Monitoring Queries:**
+
+```sql
+-- Check COPY command history:
+SELECT *
+FROM TABLE(INFORMATION_SCHEMA.COPY_HISTORY(
+    TABLE_NAME => 'table_name',
+    START_TIME => DATEADD(hours, -1, CURRENT_TIMESTAMP())
+));
+
+-- Validate before loading:
+COPY INTO table_name
+FROM @stage_name
+VALIDATION_MODE = 'RETURN_ERRORS'
+FILE_FORMAT = (TYPE = 'CSV');
+
+```
+
+---
+
+## SECTION 5: DATA TRANSFORMATIONS (20% Weight - Second Highest!)
+
+### 🔄 **Semi-Structured Data Types**
+
+### **5.1 The "VOA" Data Types**
+
+| Type | Purpose | Max Size | Memory Aid |
+| --- | --- | --- | --- |
+| **VARIANT** | Universal semi-structured | 16MB (128MB in 2025_03) | **V**ersatile **V**ariant |
+| **OBJECT** | Key-value pairs | 16MB (128MB in 2025_03) | **O**bject **O**rganized |
+| **ARRAY** | Ordered list | 16MB (128MB in 2025_03) | **A**rray **A**rranged |
+
+### **5.2 JSON Data Access Patterns**
+
+### **Path Notation Syntax:**
+
+```sql
+-- Dot Notation:
+SELECT json_col:level1.level2.level3::STRING
+FROM table_name;
+
+-- Bracket Notation:
+SELECT json_col['level1']['level2'][0]::STRING
+FROM table_name;
+
+-- Mixed Notation:
+SELECT json_col:events[0].event_type::STRING
+FROM table_name;
+
+```
+
+### **Critical JSON Functions:**
+
+```sql
+-- Parse JSON string:
+SELECT PARSE_JSON('{"name":"John","age":30}');
+
+-- Check if valid JSON:
+SELECT TRY_PARSE_JSON('invalid json'); -- Returns NULL
+
+-- Get object keys:
+SELECT OBJECT_KEYS(json_column);
+
+-- Array length:
+SELECT ARRAY_SIZE(json_column:events);
+
+```
+
+### **5.3 FLATTEN Function - Master Pattern**
+
+### **FLATTEN Syntax Template:**
+
+```sql
+-- Basic FLATTEN:
+SELECT f.value
+FROM table_name,
+LATERAL FLATTEN(INPUT => json_column:array_field) AS f;
+
+-- Advanced FLATTEN with parameters:
+SELECT f.seq, f.key, f.path, f.index, f.value
+FROM table_name,
+LATERAL FLATTEN(
+    INPUT => json_column:events,
+    PATH => 'items',
+    OUTER => TRUE,
+    RECURSIVE => FALSE,
+    MODE => 'ARRAY'
+) AS f;
+
+```
+
+### **FLATTEN Output Columns:**
+
+| Column | Description | Use Case |
+| --- | --- | --- |
+| **SEQ** | Unique sequence number | Ordering |
+| **KEY** | Key name for objects | Object processing |
+| **PATH** | Path to element | Debugging |
+| **INDEX** | Array index | Array processing |
+| **VALUE** | Actual value | Data extraction |
+| **THIS** | Current element | Context |
+
+### **5.4 Data Transformation During COPY**
+
+### **COPY Transformations:**
+
+```sql
+-- Column reordering & casting:
+COPY INTO target_table (col1, col2, col3)
+FROM (
+    SELECT
+        $3::VARCHAR,           -- Reorder columns
+        $1::NUMBER,            -- Cast data types
+        CURRENT_TIMESTAMP(),   -- Add audit columns
+        $2::DATE
+    FROM @stage_name
+)
+FILE_FORMAT = (TYPE = 'CSV');
+
+-- JSON field extraction:
+COPY INTO target_table (id, name, city)
+FROM (
+    SELECT
+        $1:id::NUMBER,
+        $1:profile.name::VARCHAR,
+        $1:address.city::VARCHAR
+    FROM @json_stage
+)
+FILE_FORMAT = (TYPE = 'JSON');
+
+```
+
+### **5.5 SQL Transformation Functions**
+
+### **String Functions:**
+
+```sql
+-- Common patterns:
+UPPER(column_name)
+LOWER(column_name)
+TRIM(column_name)
+SUBSTRING(column_name, start, length)
+REGEXP_REPLACE(column_name, 'pattern', 'replacement')
+SPLIT(column_name, 'delimiter')
+
+```
+
+### **Date/Time Functions:**
+
+```sql
+-- Date manipulation:
+DATE_TRUNC('MONTH', date_column)
+DATEADD('DAY', 7, date_column)
+DATEDIFF('DAYS', start_date, end_date)
+TO_DATE(string_column, 'YYYY-MM-DD')
+CURRENT_TIMESTAMP()
+
+```
+
+### **Window Functions:**
+
+```sql
+-- Ranking and analytics:
+ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2)
+RANK() OVER (ORDER BY sales DESC)
+LAG(column_name, 1) OVER (ORDER BY date_col)
+SUM(amount) OVER (PARTITION BY customer_id)
+
+```
+
+### **5.6 Advanced Transformation Techniques**
+
+### **Pivoting Data:**
+
+```sql
+-- PIVOT example:
+SELECT *
+FROM (
+    SELECT customer_id, product, quantity
+    FROM sales_data
+)
+PIVOT (
+    SUM(quantity)
+    FOR product IN ('A', 'B', 'C')
+) AS p;
+
+```
+
+### **User-Defined Functions (UDFs):**
+
+```sql
+-- JavaScript UDF:
+CREATE FUNCTION calculate_tax(price FLOAT, rate FLOAT)
+RETURNS FLOAT
+LANGUAGE JAVASCRIPT
+AS '
+    return PRICE * (1 + RATE);
+';
+
+-- SQL UDF:
+CREATE FUNCTION full_name(first VARCHAR, last VARCHAR)
+RETURNS VARCHAR
+AS (first || ' ' || last);
+
+```
+
+---
+
+## SECTION 6: DATA PROTECTION AND DATA SHARING (10% Weight)
+
+### 🛡️ **Data Protection Features**
+
+### **6.1 Time Travel - "GURU" Memory Aid**
+
+| Edition | Time Travel Period | Memory Aid |
+| --- | --- | --- |
+| **Standard** | 1 day | **S**tandard = **1** day |
+| **Enterprise** | 90 days (default) | **E**nterprise = **90** days |
+| **Business Critical** | 90 days | **BC** = **90** days |
+| **VPS** | 90 days | **VPS** = **90** days |
+
+### **Time Travel Syntax Patterns:**
+
+```sql
+-- Query historical data:
+SELECT * FROM table_name AT (TIMESTAMP => '2024-01-15 10:00:00');
+SELECT * FROM table_name AT (OFFSET => -3600); -- 1 hour ago
+SELECT * FROM table_name AT (STATEMENT => 'query_id');
+
+-- Clone from historical point:
+CREATE TABLE backup_table
+CLONE original_table
+AT (TIMESTAMP => '2024-01-15 09:00:00');
+
+-- Restore table (UNDROP):
+DROP TABLE important_table;
+UNDROP TABLE important_table;
+
+```
+
+### **6.2 Fail-Safe - "7-Day Safety Net"**
+
+- **Duration**: **7 days** (non-configurable)
+- **Access**: **Snowflake only** (not customer accessible)
+- **Starts**: After Time Travel period expires
+- **Purpose**: Data recovery by Snowflake Support
+
+### **6.3 Data Cloning - Zero-Copy Magic**
+
+### **Cloning Syntax Patterns:**
+
+```sql
+-- Database cloning:
+CREATE DATABASE dev_db CLONE prod_db;
+
+-- Schema cloning:
+CREATE SCHEMA test_schema CLONE prod_schema;
+
+-- Table cloning:
+CREATE TABLE backup_sales CLONE sales;
+
+-- Clone with Time Travel:
+CREATE TABLE monthly_backup
+CLONE sales
+AT (TIMESTAMP => '2024-01-01 00:00:00');
+
+```
+
+### **Cloning Characteristics:**
+
+- ✅ **Instant**: No data copying
+- ✅ **Storage efficient**: Shared until changes
+- ✅ **Independent**: Changes don't affect source
+- ✅ **Metadata included**: Constraints, indexes, etc.
+
+### **6.4 Data Encryption**
+
+### **Encryption Layers:**
+
+| Layer | Type | Key Management |
+| --- | --- | --- |
+| **All Data** | AES-256 | Automatic |
+| **Network** | TLS 1.2+ | Automatic |
+| **End-to-End** | Client-side | Optional |
+
+### **Customer-Managed Keys (Business Critical+):**
+
+```sql
+-- Enable customer-managed encryption:
+ALTER ACCOUNT SET ENCRYPTION_KEY_SIZE = 256;
+
+```
+
+### **6.5 Data Sharing Architecture**
+
+### **6.6 Account Types for Sharing:**
+
+| Account Type | Purpose | Billing |
+| --- | --- | --- |
+| **Provider Account** | Shares data | Pays for compute |
+| **Consumer Account** | Receives shares | Pays for compute |
+| **Reader Account** | Read-only access | Provider pays |
+
+### **Data Sharing Workflow:**
+
+```sql
+-- 1. Create Share (Provider):
+CREATE SHARE sales_share;
+
+-- 2. Grant access to objects:
+GRANT USAGE ON DATABASE sales_db TO SHARE sales_share;
+GRANT USAGE ON SCHEMA sales_db.public TO SHARE sales_share;
+GRANT SELECT ON TABLE sales_db.public.orders TO SHARE sales_share;
+
+-- 3. Add accounts to share:
+ALTER SHARE sales_share
+ADD ACCOUNTS = ('CONSUMER_ACCOUNT_1', 'CONSUMER_ACCOUNT_2');
+
+-- 4. Consumer creates database from share:
+CREATE DATABASE shared_sales_db
+FROM SHARE provider_account.sales_share;
+
+```
+
+### **6.7 Secure Data Sharing Features**
+
+### **Row Access Policies:**
+
+```sql
+CREATE ROW ACCESS POLICY region_policy AS (region VARCHAR)
+RETURNS BOOLEAN ->
+  CASE
+    WHEN CURRENT_ROLE() = 'ADMIN' THEN TRUE
+    WHEN CURRENT_ROLE() = 'SALES_EAST' AND region = 'East' THEN TRUE
+    WHEN CURRENT_ROLE() = 'SALES_WEST' AND region = 'West' THEN TRUE
+    ELSE FALSE
+  END;
+
+-- Apply policy:
+ALTER TABLE sales_data
+ADD ROW ACCESS POLICY region_policy (region);
+
+```
+
+### **Data Masking Policies:**
+
+```sql
+CREATE MASKING POLICY email_mask AS (val STRING)
+RETURNS STRING ->
+  CASE
+    WHEN CURRENT_ROLE() IN ('ADMIN', 'SECURITY') THEN val
+    ELSE REGEXP_REPLACE(val, '.+@', '*****@')
+  END;
+
+-- Apply masking:
+ALTER TABLE customers
+ALTER COLUMN email
+SET MASKING POLICY email_mask;
+
+```
+
+### **6.8 Marketplace and Data Exchange**
+
+### **Snowflake Marketplace:**
+
+- **Public datasets** available to all
+- **Commercial data** from verified providers
+- **Easy discovery** through Snowsight interface
+- **Instant access** without ETL
+
+### **Private Data Exchange:**
+
+- **Invitation-only** sharing
+- **Controlled distribution**
+- **Custom agreements**
+- **Enhanced security**
+
+---
+
+## 🎯 **COMPLETE EXAM SUCCESS STRATEGY**
+
+### **Final Memory Palace - "CSS-APDT"**
+
+1. **C**loud Architecture (25%)
+2. **S**ecurity & Access (20%)
+3. **S**peed & Performance (15%)
+4. **A**ccess Data (10% - Loading)
+5. **P**rocess Data (20% - Transform)
+6. **D**efend & Share (10% - Protection)
+7. **T**otal = 100%
+
+### **High-Impact Study Areas (80/20 Rule):**
+
+1. **Virtual Warehouse sizing & scaling** (frequent questions)
+2. **RBAC role hierarchy** (always tested)
+3. **Time Travel by edition** (guaranteed questions)
+4. **COPY INTO syntax variations** (multiple scenarios)
+5. **JSON path notation & FLATTEN** (semi-structured focus)
+6. **Data sharing workflow** (conceptual understanding)
+
+### **Day-Before-Exam Checklist:**
+
+✅ Warehouse credit calculations by size
+
+✅ Role inheritance (ACCOUNTADMIN → SYSADMIN → Custom)
+
+✅ Time Travel: Standard(1d), Enterprise+(90d), Fail-safe(7d)
+
+✅ Stage types: @~ (user), @% (table), @stage (named)
+
+✅ VARIANT vs OBJECT vs ARRAY differences
+
+✅ FLATTEN output columns: SEQ, KEY, PATH, INDEX, VALUE, THIS
+
+✅ Clone vs Time Travel vs Fail-safe capabilities
+
+✅ Share creation and consumption workflow
+
+### **Exam Day Tips:**
+
+- **Read carefully**: Multiple-select vs multiple-choice
+- **Eliminate obviously wrong answers** first
+- **Time management**: ~1.15 minutes per question
+- **Flag and return** to difficult questions
+- **Trust your preparation** - you've got this!
