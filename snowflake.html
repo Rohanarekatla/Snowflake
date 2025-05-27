@@ -1,0 +1,1045 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SnowPro Core ❄️</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ffad46f-56a9-8012-a6d7-f59a3f15a437" class="page sans"><header><h1 class="page-title">SnowPro Core <strong>❄️</strong></h1><p class="page-description"></p></header><div class="page-body"><h1 id="1ffad46f-56a9-805b-a43d-c09423f6401e" class="">Certification Study Notes</h1><h2 id="1ffad46f-56a9-8035-8b2b-effa46fe4aed" class="">Exam Overview: COF-C02</h2><p id="1ffad46f-56a9-800a-8fce-de3dd4ef8fff" class=""><strong>Exam Details:</strong></p><ul id="1ffad46f-56a9-808f-abde-d479cd157ded" class="bulleted-list"><li style="list-style-type:disc"><strong>100 Questions</strong> | <strong>115 Minutes</strong> | <strong>Passing Score: 750/1000</strong></li></ul><ul id="1ffad46f-56a9-80a9-b7d1-cada20dbeebd" class="bulleted-list"><li style="list-style-type:disc"><strong>Cost:</strong> $175 USD | <strong>Languages:</strong> English, Japanese, Korean</li></ul><ul id="1ffad46f-56a9-8034-b96e-cc258eef8138" class="bulleted-list"><li style="list-style-type:disc"><strong>Question Types:</strong> Multiple Choice &amp; Multiple Select</li></ul><ul id="1ffad46f-56a9-80e0-a7d1-c2b74e9318a9" class="bulleted-list"><li style="list-style-type:disc"><strong>No Prerequisites Required</strong></li></ul><hr id="1ffad46f-56a9-80bd-9e95-fc47afda08e6"/><h2 id="1ffad46f-56a9-80fc-9ed0-d6e1e2896a59" class="">SECTION 1: SNOWFLAKE AI DATA CLOUD FEATURES &amp; ARCHITECTURE (25% - Highest Weight!)</h2><h3 id="1ffad46f-56a9-80c6-97cd-c57ec3db36e8" class="">🏗️ <strong>Snowflake Architecture - The 3-Layer Foundation</strong></h3><h3 id="1ffad46f-56a9-80ce-9e4e-db1f482a87c2" class=""><strong>Memory Aid: &quot;CSS&quot; = Cloud, Services, Storage</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-801c-b791-c60a8f79f441" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">┌─────────────────────────────────────┐
+│        CLOUD SERVICES LAYER        │  ← Global Services &amp; Metadata
+├─────────────────────────────────────┤
+│         COMPUTE LAYER              │  ← Virtual Warehouses (VW)
+├─────────────────────────────────────┤
+│         STORAGE LAYER              │  ← Databases, Tables, Stages
+└─────────────────────────────────────┘
+</code></pre><h3 id="1ffad46f-56a9-805f-b4e9-c4fb702a9ca4" class=""><strong>1.1 Storage Layer - &quot;Where Data Lives&quot;</strong></h3><table id="1ffad46f-56a9-8047-9e30-f2e554ce31fc" class="simple-table"><tbody><tr id="1ffad46f-56a9-803c-9254-fca8d5f3a63b"><td id="jqYh" class="">Component</td><td id="Ar^d" class="">Description</td><td id="ONOE" class="">Key Points</td></tr><tr id="1ffad46f-56a9-80b7-a70f-c1176ba5d043"><td id="jqYh" class=""><strong>Micro-partitions</strong></td><td id="Ar^d" class="">Data stored in compressed, columnar format</td><td id="ONOE" class="">• 50-500MB uncompressed&lt;br&gt;• Automatic clustering&lt;br&gt;• Immutable files</td></tr><tr id="1ffad46f-56a9-808c-9ddd-dd21389d2670"><td id="jqYh" class=""><strong>File Formats</strong></td><td id="Ar^d" class="">Structured &amp; Semi-structured</td><td id="ONOE" class="">• JSON, AVRO, PARQUET, XML&lt;br&gt;• CSV, TSV, PSV</td></tr><tr id="1ffad46f-56a9-80dd-b961-d4a4d37797b4"><td id="jqYh" class=""><strong>Stages</strong></td><td id="Ar^d" class="">Data loading locations</td><td id="ONOE" class="">• Internal: <code>@~</code> <code>@%</code> <code>@stage_name</code>&lt;br&gt;• External: S3, Azure, GCS</td></tr></tbody></table><h3 id="1ffad46f-56a9-802f-a387-f349b3b796f1" class=""><strong>1.2 Compute Layer - &quot;Where Work Happens&quot;</strong></h3><h3 id="1ffad46f-56a9-807d-89ed-e2d7613f0b21" class=""><strong>Virtual Warehouse Sizes &amp; Credits (MUST MEMORIZE!)</strong></h3><table id="1ffad46f-56a9-80dc-8638-eb5321330d7d" class="simple-table"><tbody><tr id="1ffad46f-56a9-80cf-864c-f9bf59542de0"><td id="re~s" class="">Size</td><td id="IJjf" class="">Credits/Hour</td><td id="f]MV" class="">Servers</td><td id="?|lN" class="">Memory Aid</td></tr><tr id="1ffad46f-56a9-809b-9e79-dd424cadc841"><td id="re~s" class="">X-Small</td><td id="IJjf" class="">1</td><td id="f]MV" class="">1</td><td id="?|lN" class=""><strong>X</strong>tra <strong>S</strong>mall = <strong>1</strong> Credit</td></tr><tr id="1ffad46f-56a9-8085-b058-c12a61c41b8f"><td id="re~s" class="">Small</td><td id="IJjf" class="">2</td><td id="f]MV" class="">2</td><td id="?|lN" class=""><strong>S</strong>mall = <strong>2</strong> Credits</td></tr><tr id="1ffad46f-56a9-809e-bc31-fea788c88ae8"><td id="re~s" class="">Medium</td><td id="IJjf" class="">4</td><td id="f]MV" class="">4</td><td id="?|lN" class=""><strong>M</strong>edium = <strong>4</strong> Credits</td></tr><tr id="1ffad46f-56a9-808e-a599-d1351dd82cf2"><td id="re~s" class="">Large</td><td id="IJjf" class="">8</td><td id="f]MV" class="">8</td><td id="?|lN" class=""><strong>L</strong>arge = <strong>8</strong> Credits</td></tr><tr id="1ffad46f-56a9-807e-a355-d93a7bcf503d"><td id="re~s" class="">X-Large</td><td id="IJjf" class="">16</td><td id="f]MV" class="">16</td><td id="?|lN" class=""><strong>XL</strong> = <strong>16</strong> Credits</td></tr><tr id="1ffad46f-56a9-8027-89e5-d7b3a1ffec4e"><td id="re~s" class="">2X-Large</td><td id="IJjf" class="">32</td><td id="f]MV" class="">32</td><td id="?|lN" class=""><strong>2XL</strong> = <strong>32</strong> Credits</td></tr><tr id="1ffad46f-56a9-8055-8c81-f9e0f39f5718"><td id="re~s" class="">3X-Large</td><td id="IJjf" class="">64</td><td id="f]MV" class="">64</td><td id="?|lN" class=""><strong>3XL</strong> = <strong>64</strong> Credits</td></tr><tr id="1ffad46f-56a9-8041-971c-ff87e0cfbb66"><td id="re~s" class="">4X-Large</td><td id="IJjf" class="">128</td><td id="f]MV" class="">128</td><td id="?|lN" class=""><strong>4XL</strong> = <strong>128</strong> Credits</td></tr></tbody></table><p id="1ffad46f-56a9-808e-8769-c66b529868d2" class=""><strong>Memory Trick:</strong> Each size <strong>doubles</strong> the previous (except X-Small to Small)</p><h3 id="1ffad46f-56a9-8032-814d-f42d426753d8" class=""><strong>1.3 Cloud Services Layer - &quot;The Brain&quot;</strong></h3><ul id="1ffad46f-56a9-80dd-8bec-d7926d42e4ff" class="bulleted-list"><li style="list-style-type:disc"><strong>Authentication &amp; Access Control</strong></li></ul><ul id="1ffad46f-56a9-8078-9693-f0de7f6cbc93" class="bulleted-list"><li style="list-style-type:disc"><strong>Query Parsing &amp; Optimization</strong></li></ul><ul id="1ffad46f-56a9-8011-84be-f6aebc003d99" class="bulleted-list"><li style="list-style-type:disc"><strong>Metadata Management</strong></li></ul><ul id="1ffad46f-56a9-80b2-bce8-edbfd3d4cb3d" class="bulleted-list"><li style="list-style-type:disc"><strong>Infrastructure Management</strong></li></ul><h3 id="1ffad46f-56a9-8088-a20d-d5cf395913f4" class=""><strong>🔥 Critical Architecture Facts for Exam:</strong></h3><ol type="1" id="1ffad46f-56a9-80ea-86fb-ce2c8a3e3973" class="numbered-list" start="1"><li><strong>Separation of Storage &amp; Compute</strong> = Elastic scaling</li></ol><ol type="1" id="1ffad46f-56a9-8065-87ef-e1bfc0b4e75b" class="numbered-list" start="2"><li><strong>Multi-cluster Shared Data</strong> = Multiple warehouses can access same data simultaneously</li></ol><ol type="1" id="1ffad46f-56a9-8082-b86e-db43578a2731" class="numbered-list" start="3"><li><strong>Auto-suspend/Auto-resume</strong> = Cost optimization</li></ol><ol type="1" id="1ffad46f-56a9-807f-8c4a-eaadd6d4238a" class="numbered-list" start="4"><li><strong>Cross-cloud replication</strong> = Available across AWS, Azure, GCP</li></ol><hr id="1ffad46f-56a9-8012-8b55-f647dfbe2d84"/><h2 id="1ffad46f-56a9-8052-9e5f-d200fa1a1673" class=""><strong>1.4 Snowflake Editions Comparison</strong></h2><table id="1ffad46f-56a9-802b-a52a-c397ff391c4f" class="simple-table"><tbody><tr id="1ffad46f-56a9-8026-96b9-ce04b2580e3d"><td id="LeMi" class="">Feature</td><td id="C@wC" class="">Standard</td><td id="lTWy" class="">Enterprise</td><td id="&lt;iZH" class="">Business Critical</td><td id="&gt;zcu" class="">VPS</td></tr><tr id="1ffad46f-56a9-808c-b812-fa8c494a1754"><td id="LeMi" class=""><strong>Time Travel</strong></td><td id="C@wC" class="">1 day</td><td id="lTWy" class="">90 days</td><td id="&lt;iZH" class="">90 days</td><td id="&gt;zcu" class="">90 days</td></tr><tr id="1ffad46f-56a9-8048-bcde-e5b5d44c4e3c"><td id="LeMi" class=""><strong>Multi-cluster Warehouses</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">✅</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-804e-a006-cf9f793c158b"><td id="LeMi" class=""><strong>Column-level Security</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">✅</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-803e-aec0-ef6d19040952"><td id="LeMi" class=""><strong>Materialized Views</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">✅</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-8059-8699-cf4d6f6f3265"><td id="LeMi" class=""><strong>Search Optimization</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">✅</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-80e7-8876-db686d54ae3f"><td id="LeMi" class=""><strong>HIPAA/PCI Compliance</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">❌</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-8026-bca2-c8c563b70d32"><td id="LeMi" class=""><strong>Customer-Managed Keys</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">❌</td><td id="&lt;iZH" class="">✅</td><td id="&gt;zcu" class="">✅</td></tr><tr id="1ffad46f-56a9-8075-981d-ef67dc92488c"><td id="LeMi" class=""><strong>Private Connectivity</strong></td><td id="C@wC" class="">❌</td><td id="lTWy" class="">❌</td><td id="&lt;iZH" class="">❌</td><td id="&gt;zcu" class="">✅</td></tr></tbody></table><p id="1ffad46f-56a9-808e-9d21-e79c51a5a80f" class=""><strong>Memory Aid:</strong> &quot;SEMB-VPS&quot; = Standard, Enterprise, Business Critical, VPS (increasing features)</p><hr id="1ffad46f-56a9-807d-a900-ff3e0c66a1fb"/><h2 id="1ffad46f-56a9-80d4-8e5a-f4c245dd82ea" class=""><strong>1.5 Key Snowflake Unique Features</strong></h2><h3 id="1ffad46f-56a9-80dc-a599-e77998e60aec" class=""><strong>Zero-Copy Cloning Workflow:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8079-b45a-cbf314cc5caa" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- SYNTAX PATTERN TO MEMORIZE:
+CREATE &lt;OBJECT_TYPE&gt; &lt;clone_name&gt;
+CLONE &lt;source_name&gt;
+[AT (TIMESTAMP =&gt; &#x27;&lt;timestamp&gt;&#x27;)];
+
+-- Examples:
+CREATE DATABASE prod_clone CLONE production;
+CREATE TABLE sales_backup CLONE sales AT (TIMESTAMP =&gt; &#x27;2024-01-15 10:00:00&#x27;);
+</code></pre><h3 id="1ffad46f-56a9-8006-9197-ef71e689e06d" class=""><strong>Time Travel Syntax Pattern:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8098-8b90-c3033f8cc879" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Time Travel Query Patterns:
+SELECT * FROM table_name AT (TIMESTAMP =&gt; &#x27;timestamp&#x27;);
+SELECT * FROM table_name AT (OFFSET =&gt; -seconds);
+SELECT * FROM table_name AT (STATEMENT =&gt; &#x27;query_id&#x27;);
+
+-- Undrop Syntax:
+UNDROP TABLE table_name;
+UNDROP SCHEMA schema_name;
+UNDROP DATABASE database_name;
+</code></pre><hr id="1ffad46f-56a9-802c-b8ee-e88c1eebdfeb"/><h2 id="1ffad46f-56a9-804d-81c7-cbe7102d9250" class="">SECTION 2: ACCOUNT ACCESS AND SECURITY (20% Weight)</h2><h3 id="1ffad46f-56a9-8055-9f2b-eaad86c0a68b" class="">🔐 <strong>Security Architecture Overview</strong></h3><h3 id="1ffad46f-56a9-80cd-be61-cf701c7dc67e" class=""><strong>2.1 RBAC (Role-Based Access Control) Hierarchy</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-801b-8b5d-c1994942b1f3" class="code"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">                ACCOUNTADMIN (God Mode)
+                      │
+              ┌───────┼───────┐
+              │               │
+         SECURITYADMIN    SYSADMIN
+              │               │
+         ┌────┴────┐     ┌────┴────┐
+    USERADMIN  Custom   CUSTOM   PUBLIC
+               Roles    ROLES    (Everyone)
+</code></pre><h3 id="1ffad46f-56a9-80df-8542-eb854d41da36" class=""><strong>2.2 Built-in Roles - &quot;SAPU&quot; Memory Aid</strong></h3><table id="1ffad46f-56a9-803f-8c47-c127eb57418c" class="simple-table"><tbody><tr id="1ffad46f-56a9-80c4-95bd-c9d674ad6f33"><td id="t@_Q" class="">Role</td><td id="AZc|" class="">Privileges</td><td id="cjj:" class="">Memory Aid</td></tr><tr id="1ffad46f-56a9-8076-a43d-f52f442ba50a"><td id="t@_Q" class=""><strong>ACCOUNTADMIN</strong></td><td id="AZc|" class="">Everything</td><td id="cjj:" class=""><strong>A</strong>ll <strong>A</strong>ccess <strong>A</strong>lways</td></tr><tr id="1ffad46f-56a9-8063-8965-fb98f6d1375f"><td id="t@_Q" class=""><strong>SECURITYADMIN</strong></td><td id="AZc|" class="">User/Role management</td><td id="cjj:" class=""><strong>S</strong>ecurity <strong>S</strong>tuff</td></tr><tr id="1ffad46f-56a9-8099-b31c-fe09cb6dcf48"><td id="t@_Q" class=""><strong>SYSADMIN</strong></td><td id="AZc|" class="">Warehouse/DB management</td><td id="cjj:" class=""><strong>S</strong>ystem <strong>S</strong>tuff</td></tr><tr id="1ffad46f-56a9-80de-a4a1-ec499eb6d64d"><td id="t@_Q" class=""><strong>USERADMIN</strong></td><td id="AZc|" class="">User management only</td><td id="cjj:" class=""><strong>U</strong>sers <strong>U</strong>nder me</td></tr><tr id="1ffad46f-56a9-8096-b4d9-f88716d55b9e"><td id="t@_Q" class=""><strong>PUBLIC</strong></td><td id="AZc|" class="">Default for all users</td><td id="cjj:" class=""><strong>P</strong>ublic <strong>P</strong>ermissions</td></tr></tbody></table><h3 id="1ffad46f-56a9-8094-89ae-c8233354bffe" class=""><strong>2.3 Authentication Methods Table</strong></h3><table id="1ffad46f-56a9-80ad-9d84-c760909ccb57" class="simple-table"><tbody><tr id="1ffad46f-56a9-8071-8e58-d1baa99596dc"><td id="QAj`" class="">Method</td><td id="sOPo" class="">Use Case</td><td id="StBv" class="">Configuration</td></tr><tr id="1ffad46f-56a9-8054-9efe-ce73171f653e"><td id="QAj`" class=""><strong>Username/Password</strong></td><td id="sOPo" class="">Basic auth</td><td id="StBv" class="">Default method</td></tr><tr id="1ffad46f-56a9-80a3-9e2f-cb788c70bfff"><td id="QAj`" class=""><strong>MFA</strong></td><td id="sOPo" class="">Enhanced security</td><td id="StBv" class=""><code>ALTER USER SET MFA = TRUE</code></td></tr><tr id="1ffad46f-56a9-807f-9931-cc5a8707f91c"><td id="QAj`" class=""><strong>SSO/SAML</strong></td><td id="sOPo" class="">Enterprise integration</td><td id="StBv" class="">External IdP required</td></tr><tr id="1ffad46f-56a9-80ca-ba33-d816b86565ab"><td id="QAj`" class=""><strong>Key Pair</strong></td><td id="sOPo" class="">API/Driver connections</td><td id="StBv" class="">RSA public/private keys</td></tr><tr id="1ffad46f-56a9-80a7-bf5d-e5dabf57971a"><td id="QAj`" class=""><strong>OAuth</strong></td><td id="sOPo" class="">Third-party apps</td><td id="StBv" class="">External OAuth provider</td></tr></tbody></table><h3 id="1ffad46f-56a9-8017-8a0f-d0a199399178" class=""><strong>2.4 Critical Security SQL Patterns</strong></h3><h3 id="1ffad46f-56a9-80f8-913a-d1a65745a069" class=""><strong>User Management Workflow:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8056-9f5e-d4b6d9f6ed70" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- CREATE USER Pattern:
+CREATE USER username
+PASSWORD = &#x27;password&#x27;
+DEFAULT_ROLE = role_name
+DEFAULT_WAREHOUSE = warehouse_name
+DEFAULT_NAMESPACE = &#x27;database.schema&#x27;
+MUST_CHANGE_PASSWORD = TRUE;
+
+-- GRANT/REVOKE Pattern:
+GRANT ROLE role_name TO USER username;
+GRANT privilege ON object TO ROLE role_name;
+REVOKE privilege ON object FROM ROLE role_name;
+</code></pre><h3 id="1ffad46f-56a9-8004-9189-ef812668446f" class=""><strong>Role Management Best Practices:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-804e-a628-e5f02e733ddb" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Role Hierarchy Creation:
+CREATE ROLE data_analyst;
+CREATE ROLE data_scientist;
+GRANT ROLE data_analyst TO ROLE data_scientist;
+GRANT ROLE data_scientist TO ROLE sysadmin;
+</code></pre><h3 id="1ffad46f-56a9-80e1-9411-d866d8e0a92e" class=""><strong>2.5 Network Security Features</strong></h3><h3 id="1ffad46f-56a9-806e-b481-e97e3dd23cc1" class=""><strong>Network Policies Syntax:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-803e-9869-c4266cb11de3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CREATE NETWORK POLICY policy_name
+ALLOWED_IP_LIST = (&#x27;192.168.1.0/24&#x27;, &#x27;10.0.0.0/8&#x27;)
+BLOCKED_IP_LIST = (&#x27;192.168.1.99&#x27;)
+COMMENT = &#x27;Production access policy&#x27;;
+
+-- Apply to account or user:
+ALTER ACCOUNT SET NETWORK_POLICY = policy_name;
+ALTER USER username SET NETWORK_POLICY = policy_name;
+</code></pre><h3 id="1ffad46f-56a9-80b8-834d-c1f425001322" class=""><strong>2.6 Object-Level Security</strong></h3><h3 id="1ffad46f-56a9-806d-9ebf-f486612209a2" class=""><strong>Column-Level Security (Enterprise+):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8021-994c-e2c886eb1e36" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Masking Policy Pattern:
+CREATE MASKING POLICY email_mask AS (val string)
+RETURNS string -&gt;
+  CASE
+    WHEN CURRENT_ROLE() IN (&#x27;ANALYST&#x27;) THEN val
+    ELSE REGEXP_REPLACE(val, &#x27;.+@&#x27;, &#x27;*****@&#x27;)
+  END;
+
+-- Apply masking:
+ALTER TABLE customers ALTER COLUMN email
+SET MASKING POLICY email_mask;
+</code></pre><h3 id="1ffad46f-56a9-8077-9ec7-c2ea4fc86f9f" class=""><strong>Row Access Policies:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-805c-8301-e7d3983086ab" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CREATE ROW ACCESS POLICY region_policy AS (region_column varchar)
+RETURNS BOOLEAN -&gt;
+  region_column = CURRENT_USER() OR
+  IS_ROLE_IN_SESSION(&#x27;ADMIN&#x27;);
+</code></pre><hr id="1ffad46f-56a9-808a-803b-ed7b488e6207"/><h2 id="1ffad46f-56a9-804b-86c9-e989ebde4036" class="">SECTION 3: PERFORMANCE CONCEPTS (15% Weight)</h2><h3 id="1ffad46f-56a9-807b-88da-c8dabce9d2fd" class="">⚡ <strong>Performance Optimization Hierarchy</strong></h3><h3 id="1ffad46f-56a9-80ea-a5c9-e4920953f7a2" class=""><strong>3.1 Query Performance Factors (Order of Impact)</strong></h3><ol type="1" id="1ffad46f-56a9-8050-8f78-c9a9e3710301" class="numbered-list" start="1"><li><strong>Warehouse Size</strong> (Most Impact)</li></ol><ol type="1" id="1ffad46f-56a9-80a8-8baf-f25e53ca635d" class="numbered-list" start="2"><li><strong>Data Clustering</strong></li></ol><ol type="1" id="1ffad46f-56a9-807a-8cc3-db797d4e88a7" class="numbered-list" start="3"><li><strong>Query Optimization</strong></li></ol><ol type="1" id="1ffad46f-56a9-80c6-98e9-e61198eec743" class="numbered-list" start="4"><li><strong>Caching</strong> (Least Impact but Fastest)</li></ol><h3 id="1ffad46f-56a9-8017-83d7-f59344f7ebc8" class=""><strong>3.2 Caching Layers - &quot;QRC&quot; Memory Aid</strong></h3><table id="1ffad46f-56a9-8054-a5a9-f0d4af2f050c" class="simple-table"><tbody><tr id="1ffad46f-56a9-80b3-bd0d-fae6c356f70e"><td id="iXXn" class="">Cache Type</td><td id="_EnI" class="">Duration</td><td id=":boP" class="">Scope</td><td id="^DHs" class="">Reset When</td></tr><tr id="1ffad46f-56a9-80e7-88f8-f39977dba8ac"><td id="iXXn" class=""><strong>Query Result Cache</strong></td><td id="_EnI" class="">24 hours</td><td id=":boP" class="">Global (all users)</td><td id="^DHs" class="">Data changes</td></tr><tr id="1ffad46f-56a9-80a7-99aa-e85272a23f8a"><td id="iXXn" class=""><strong>Metadata Cache</strong></td><td id="_EnI" class="">N/A</td><td id=":boP" class="">Global</td><td id="^DHs" class="">DDL operations</td></tr><tr id="1ffad46f-56a9-80cf-9f94-d203d450af33"><td id="iXXn" class=""><strong>Warehouse Cache</strong></td><td id="_EnI" class="">Until suspend</td><td id=":boP" class="">Per-warehouse</td><td id="^DHs" class="">Warehouse suspension</td></tr></tbody></table><h3 id="1ffad46f-56a9-804f-86f5-dfd0fa7bbe37" class=""><strong>Cache Utilization Query:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8053-9bc9-fd7dcdb71f12" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Check cache usage:
+SELECT query_id, total_elapsed_time, bytes_scanned,
+       percentage_scanned_from_cache
+FROM query_history()
+WHERE start_time &gt;= DATEADD(hour, -1, CURRENT_TIMESTAMP());
+</code></pre><h3 id="1ffad46f-56a9-8083-9973-d2ce7f5b40a9" class=""><strong>3.3 Virtual Warehouse Scaling</strong></h3><h3 id="1ffad46f-56a9-8092-ad16-c63749af0ef8" class=""><strong>Scaling Strategies Table:</strong></h3><table id="1ffad46f-56a9-808a-9124-da5acbd8ebb1" class="simple-table"><tbody><tr id="1ffad46f-56a9-809a-b089-dfada4e3664c"><td id="Wr[t" class="">Scenario</td><td id="?;iF" class="">Scale Up (Vertical)</td><td id="BdHb" class="">Scale Out (Horizontal)</td></tr><tr id="1ffad46f-56a9-801b-9521-ff7239b64fc3"><td id="Wr[t" class=""><strong>Complex Queries</strong></td><td id="?;iF" class="">✅ Increase warehouse size</td><td id="BdHb" class="">❌ Won&#x27;t help much</td></tr><tr id="1ffad46f-56a9-8010-b370-dbb713105c35"><td id="Wr[t" class=""><strong>High Concurrency</strong></td><td id="?;iF" class="">❌ Limited benefit</td><td id="BdHb" class="">✅ Multi-cluster warehouse</td></tr><tr id="1ffad46f-56a9-80da-aca8-c3f568da752a"><td id="Wr[t" class=""><strong>Large Data Scans</strong></td><td id="?;iF" class="">✅ More compute power</td><td id="BdHb" class="">❌ Same scan per node</td></tr><tr id="1ffad46f-56a9-800e-97fb-f9a9b181c629"><td id="Wr[t" class=""><strong>Many Small Queries</strong></td><td id="?;iF" class="">❌ Waste of resources</td><td id="BdHb" class="">✅ More warehouses</td></tr></tbody></table><h3 id="1ffad46f-56a9-80d1-b739-f920653d849c" class=""><strong>Multi-Cluster Warehouse Configuration:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80e8-ba8c-fc64c7cf324b" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CREATE WAREHOUSE analytics_wh WITH
+WAREHOUSE_SIZE = &#x27;LARGE&#x27;
+AUTO_SUSPEND = 300
+AUTO_RESUME = TRUE
+MIN_CLUSTER_COUNT = 1
+MAX_CLUSTER_COUNT = 5
+SCALING_POLICY = &#x27;STANDARD&#x27;; -- or &#x27;ECONOMY&#x27;
+</code></pre><h3 id="1ffad46f-56a9-804e-b014-d10176b1635e" class=""><strong>3.4 Clustering &amp; Micro-partitions</strong></h3><h3 id="1ffad46f-56a9-8038-9e15-cd2a007cb1fe" class=""><strong>Clustering Key Guidelines:</strong></h3><ul id="1ffad46f-56a9-8072-a052-ee15dd466592" class="bulleted-list"><li style="list-style-type:disc"><strong>Best Columns:</strong> Date/timestamp, frequently filtered columns</li></ul><ul id="1ffad46f-56a9-8011-8450-e6deb6b4c9e8" class="bulleted-list"><li style="list-style-type:disc"><strong>Avoid:</strong> High cardinality (like IDs), frequently updated columns</li></ul><ul id="1ffad46f-56a9-80e1-909a-f96113aeae1a" class="bulleted-list"><li style="list-style-type:disc"><strong>Max Recommended:</strong> 3-4 columns per clustering key</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80ea-ae8d-fd34ee8b4788" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Clustering Key Syntax:
+ALTER TABLE sales CLUSTER BY (order_date, region);
+
+-- Check clustering information:
+SELECT SYSTEM$CLUSTERING_INFORMATION(&#x27;sales&#x27;, &#x27;(order_date, region)&#x27;);
+</code></pre><h3 id="1ffad46f-56a9-802e-ac4d-edef2142e46e" class=""><strong>3.5 Query Optimization Patterns</strong></h3><h3 id="1ffad46f-56a9-80aa-a314-d76c23defed6" class=""><strong>Performance Monitoring Queries:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80e3-b735-ea25279a75ca" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Find expensive queries:
+SELECT query_id, query_text, total_elapsed_time,
+       rows_examined, rows_returned
+FROM query_history()
+WHERE start_time &gt;= DATEADD(day, -1, CURRENT_TIMESTAMP())
+ORDER BY total_elapsed_time DESC
+LIMIT 10;
+
+-- Warehouse credit usage:
+SELECT warehouse_name,
+       SUM(credits_used) as total_credits,
+       AVG(avg_running) as avg_concurrency
+FROM warehouse_metering_history
+WHERE start_time &gt;= DATEADD(day, -7, CURRENT_TIMESTAMP())
+GROUP BY warehouse_name;
+</code></pre><h3 id="1ffad46f-56a9-806d-a920-d35d2456f0ff" class=""><strong>Query Profile Analysis Steps:</strong></h3><ol type="1" id="1ffad46f-56a9-80b8-a89c-e5f82618f595" class="numbered-list" start="1"><li><strong>Overall Performance</strong> - Check total execution time</li></ol><ol type="1" id="1ffad46f-56a9-805f-b844-c347987a20a1" class="numbered-list" start="2"><li><strong>Most Expensive Node</strong> - Identify bottleneck operations</li></ol><ol type="1" id="1ffad46f-56a9-80c0-985d-ecc6a62fd5d5" class="numbered-list" start="3"><li><strong>Data Scanning</strong> - Look for full table scans</li></ol><ol type="1" id="1ffad46f-56a9-8050-9f75-d23784f287a7" class="numbered-list" start="4"><li><strong>Spillage</strong> - Check for memory overflow to disk</li></ol><ol type="1" id="1ffad46f-56a9-80e1-b751-ee72d680fc26" class="numbered-list" start="5"><li><strong>Pruning</strong> - Verify partition elimination</li></ol><h3 id="1ffad46f-56a9-806f-a96c-f5f23ce8f57d" class=""><strong>3.6 Performance Best Practices Checklist</strong></h3><h3 id="1ffad46f-56a9-806f-a36f-cbf148ddc511" class=""><strong>✅ DO&#x27;s:</strong></h3><ul id="1ffad46f-56a9-8008-bf8a-d7418a1c50fd" class="bulleted-list"><li style="list-style-type:disc">Use appropriate warehouse size for workload</li></ul><ul id="1ffad46f-56a9-80c9-82fe-edf4ec3a01c7" class="bulleted-list"><li style="list-style-type:disc">Implement clustering on filter columns</li></ul><ul id="1ffad46f-56a9-804c-8851-ed006d9f2abb" class="bulleted-list"><li style="list-style-type:disc">Use LIMIT for exploratory queries</li></ul><ul id="1ffad46f-56a9-80f8-ae09-da29035e4b0a" class="bulleted-list"><li style="list-style-type:disc">Leverage result caching</li></ul><ul id="1ffad46f-56a9-8037-a683-e42e1b23922d" class="bulleted-list"><li style="list-style-type:disc">Choose efficient data types</li></ul><ul id="1ffad46f-56a9-80b4-88a3-ef5ac05725fe" class="bulleted-list"><li style="list-style-type:disc">Use materialized views for complex aggregations</li></ul><h3 id="1ffad46f-56a9-80dd-904f-f5858436cc72" class=""><strong>❌ DON&#x27;Ts:</strong></h3><ul id="1ffad46f-56a9-8012-b62d-f441376f22c4" class="bulleted-list"><li style="list-style-type:disc">Use SELECT * in production queries</li></ul><ul id="1ffad46f-56a9-808f-9d10-d3a79be930ff" class="bulleted-list"><li style="list-style-type:disc">Create clustering keys on high-cardinality columns</li></ul><ul id="1ffad46f-56a9-8021-9383-e1fe1994448d" class="bulleted-list"><li style="list-style-type:disc">Keep warehouses running unnecessarily</li></ul><ul id="1ffad46f-56a9-8026-b8c8-f3cc0c0bcc14" class="bulleted-list"><li style="list-style-type:disc">Use functions in WHERE clauses on large tables</li></ul><ul id="1ffad46f-56a9-8050-a41c-d467dd9d8177" class="bulleted-list"><li style="list-style-type:disc">Ignore query profiles for slow queries</li></ul><hr id="1ffad46f-56a9-80ad-b3e0-dced067d97e9"/><h2 id="1ffad46f-56a9-8057-9044-c82ad2b7be05" class="">🎯 <strong>Quick Exam Tips for Sections 1-3:</strong></h2><h3 id="1ffad46f-56a9-80ce-bd2d-d25fe1b2bd3d" class=""><strong>Memory Techniques:</strong></h3><ol type="1" id="1ffad46f-56a9-806d-bdde-da5000d2dc53" class="numbered-list" start="1"><li><strong>Architecture:</strong> &quot;CSS&quot; = Cloud, Services, Storage (bottom to top)</li></ol><ol type="1" id="1ffad46f-56a9-80f7-81d1-d1af490d4c59" class="numbered-list" start="2"><li><strong>Roles:</strong> &quot;SAPU&quot; = SYSADMIN, ACCOUNTADMIN, PUBLIC, USERADMIN</li></ol><ol type="1" id="1ffad46f-56a9-8057-ad62-f9c3d09e876a" class="numbered-list" start="3"><li><strong>Caching:</strong> &quot;QRC&quot; = Query, Result, Cache</li></ol><ol type="1" id="1ffad46f-56a9-80a4-a48a-ee88f7852de6" class="numbered-list" start="4"><li><strong>Editions:</strong> &quot;SEMB&quot; = Standard, Enterprise, Business Critical</li></ol><h3 id="1ffad46f-56a9-8052-a5b3-d4c58185f5d3" class=""><strong>High-Probability Exam Questions:</strong></h3><ul id="1ffad46f-56a9-80d4-a46e-e8d756b3cd20" class="bulleted-list"><li style="list-style-type:disc">Virtual warehouse credit consumption calculations</li></ul><ul id="1ffad46f-56a9-80d4-b815-dfd60118ae20" class="bulleted-list"><li style="list-style-type:disc">Role hierarchy and privilege inheritance</li></ul><ul id="1ffad46f-56a9-808f-8465-fb59fa69fa00" class="bulleted-list"><li style="list-style-type:disc">Time Travel retention periods by edition</li></ul><ul id="1ffad46f-56a9-8095-a5d3-ed767c62cf54" class="bulleted-list"><li style="list-style-type:disc">Clustering key selection criteria</li></ul><ul id="1ffad46f-56a9-804e-b695-eb8c37d01db7" class="bulleted-list"><li style="list-style-type:disc">Authentication method comparisons</li></ul><ul id="1ffad46f-56a9-8083-ab85-fa0603860d50" class="bulleted-list"><li style="list-style-type:disc">Cache utilization scenarios</li></ul><h3 id="1ffad46f-56a9-800f-8383-d8ce6873c1a6" class=""><strong>Must-Know Syntax Patterns:</strong></h3><ul id="1ffad46f-56a9-8018-8120-e5187aad6437" class="bulleted-list"><li style="list-style-type:disc">CLONE operations with AT/BEFORE</li></ul><ul id="1ffad46f-56a9-805d-9bb5-eb2bc177385f" class="bulleted-list"><li style="list-style-type:disc">GRANT/REVOKE with TO/FROM</li></ul><ul id="1ffad46f-56a9-80af-9e9f-f905afed8db0" class="bulleted-list"><li style="list-style-type:disc">CREATE USER with all parameters</li></ul><ul id="1ffad46f-56a9-80fa-a600-ecef4d4cdd39" class="bulleted-list"><li style="list-style-type:disc">Warehouse sizing and scaling options</li></ul><ul id="1ffad46f-56a9-8095-baf7-d753e9a1d006" class="bulleted-list"><li style="list-style-type:disc">Masking and row access policies</li></ul><hr id="1ffad46f-56a9-800b-8af6-ca689b2edfdc"/><h2 id="1ffad46f-56a9-80b8-a78a-fa713dac379a" class="">SECTION 4: DATA LOADING AND UNLOADING (10% Weight)</h2><h3 id="1ffad46f-56a9-80a1-878f-cd691cbfac48" class="">📂 <strong>Stage Types - &quot;UTE&quot; Memory Aid</strong></h3><h3 id="1ffad46f-56a9-8002-891c-c0e9c02d1f42" class=""><strong>4.1 Internal Stages (3 Types)</strong></h3><table id="1ffad46f-56a9-8028-b4f4-ca15769e2a8e" class="simple-table"><tbody><tr id="1ffad46f-56a9-8088-8bc7-e45321bed215"><td id="kcOD" class="">Stage Type</td><td id="Sf&gt;a" class="">Syntax</td><td id="=JDy" class="">Description</td><td id="oNqJ" class="">Memory Aid</td></tr><tr id="1ffad46f-56a9-8095-8ab9-fc9ad8c5bf51"><td id="kcOD" class=""><strong>User Stage</strong></td><td id="Sf&gt;a" class=""><code>@~</code></td><td id="=JDy" class="">Each user gets one</td><td id="oNqJ" class=""><strong>U</strong>ser = <strong>@~</strong></td></tr><tr id="1ffad46f-56a9-8025-9d99-cdcac95f82b0"><td id="kcOD" class=""><strong>Table Stage</strong></td><td id="Sf&gt;a" class=""><code>@%table_name</code></td><td id="=JDy" class="">Each table gets one</td><td id="oNqJ" class=""><strong>T</strong>able = <strong>@%</strong></td></tr><tr id="1ffad46f-56a9-800e-8d58-dd45a0138e65"><td id="kcOD" class=""><strong>Named Stage</strong></td><td id="Sf&gt;a" class=""><code>@stage_name</code></td><td id="=JDy" class="">Created explicitly</td><td id="oNqJ" class=""><strong>N</strong>amed = <strong>@stage_name</strong></td></tr></tbody></table><h3 id="1ffad46f-56a9-805e-a0c7-ed74971cd55f" class=""><strong>4.2 External Stages</strong></h3><ul id="1ffad46f-56a9-8088-bc1e-df53c9e17394" class="bulleted-list"><li style="list-style-type:disc"><strong>AWS S3</strong>: <code>s3://bucket/path/</code></li></ul><ul id="1ffad46f-56a9-80e5-af6d-ddcb9c373da5" class="bulleted-list"><li style="list-style-type:disc"><strong>Azure Blob</strong>: <code>azure://account.blob.core.windows.net/container/path/</code></li></ul><ul id="1ffad46f-56a9-8023-9ea8-fff7f06fe77b" class="bulleted-list"><li style="list-style-type:disc"><strong>Google Cloud</strong>: <code>gcs://bucket/path/</code></li></ul><h3 id="1ffad46f-56a9-80e6-938b-c69a14e761cb" class=""><strong>4.3 File Formats - Critical Syntax Patterns</strong></h3><h3 id="1ffad46f-56a9-806f-b9e8-fdadb5c9dc1a" class=""><strong>Supported File Types:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-809d-982e-dc8ae90b58d6" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- File Format Creation Pattern:
+CREATE FILE FORMAT format_name
+TYPE = &#x27;CSV&#x27; | &#x27;JSON&#x27; | &#x27;PARQUET&#x27; | &#x27;AVRO&#x27; | &#x27;ORC&#x27; | &#x27;XML&#x27;
+[format_specific_options];
+
+-- Common CSV Options:
+FIELD_DELIMITER = &#x27;,&#x27;
+RECORD_DELIMITER = &#x27;\n&#x27;
+SKIP_HEADER = 1
+FIELD_OPTIONALLY_ENCLOSED_BY = &#x27;&quot;&#x27;
+ESCAPE_CHARACTER = &#x27;\\&#x27;
+NULL_IF = (&#x27;NULL&#x27;, &#x27;null&#x27;, &#x27;&#x27;)
+ERROR_ON_COLUMN_COUNT_MISMATCH = TRUE
+
+-- JSON Options:
+STRIP_OUTER_ARRAY = TRUE
+DATE_FORMAT = &#x27;AUTO&#x27;
+TIME_FORMAT = &#x27;AUTO&#x27;
+TIMESTAMP_FORMAT = &#x27;AUTO&#x27;
+</code></pre><h3 id="1ffad46f-56a9-8058-b2cd-c758d2fa8834" class=""><strong>4.4 COPY INTO Command - Master Syntax</strong></h3><h3 id="1ffad46f-56a9-80f1-9828-e82cb8531e2b" class=""><strong>Loading Data (COPY INTO table):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8035-bb34-ff77fcf4a9d9" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Basic Pattern:
+COPY INTO [database.]schema.table_name
+FROM @stage_name/path/
+FILE_FORMAT = (FORMAT_NAME = &#x27;format_name&#x27; | TYPE = &#x27;CSV&#x27;)
+PATTERN = &#x27;.*\.csv&#x27;
+ON_ERROR = &#x27;CONTINUE&#x27; | &#x27;SKIP_FILE&#x27; | &#x27;ABORT_STATEMENT&#x27;
+PURGE = TRUE | FALSE
+FORCE = TRUE | FALSE;
+
+-- With Transformations:
+COPY INTO table_name (col1, col2, col3)
+FROM (
+    SELECT $1::VARCHAR, $2::NUMBER, $3::DATE
+    FROM @stage_name
+)
+FILE_FORMAT = (TYPE = &#x27;CSV&#x27;);
+</code></pre><h3 id="1ffad46f-56a9-80bb-a0ad-c4a81a1d88da" class=""><strong>Unloading Data (COPY INTO stage):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8095-bfcc-d63419fce9f2" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Basic Unload:
+COPY INTO @stage_name/path/
+FROM table_name
+FILE_FORMAT = (TYPE = &#x27;CSV&#x27;)
+HEADER = TRUE
+SINGLE = FALSE
+MAX_FILE_SIZE = 1000000;
+
+-- With Query:
+COPY INTO @stage_name/exported_data_
+FROM (
+    SELECT col1, col2
+    FROM table_name
+    WHERE condition
+)
+FILE_FORMAT = (TYPE = &#x27;CSV&#x27;)
+OVERWRITE = TRUE;
+</code></pre><h3 id="1ffad46f-56a9-8041-94d4-e78008e1b82c" class=""><strong>4.5 PUT and GET Commands (SnowSQL Only)</strong></h3><h3 id="1ffad46f-56a9-80d1-9e0e-ca2ba4c2acc8" class=""><strong>PUT (Upload from Local):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-801a-b96a-ffbe286bc4a9" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Syntax Pattern:
+PUT file://local_path @stage_name
+AUTO_COMPRESS = TRUE | FALSE
+OVERWRITE = TRUE | FALSE;
+
+-- Examples:
+PUT file:///tmp/data.csv @my_stage
+PUT file://C:\data\*.csv @~ AUTO_COMPRESS=TRUE
+</code></pre><h3 id="1ffad46f-56a9-8077-a270-fab470f359c1" class=""><strong>GET (Download to Local):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80eb-b42c-e9e0e456930c" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Syntax Pattern:
+GET @stage_name/file_name file://local_path;
+
+-- Examples:
+GET @my_stage/data.csv file:///tmp/
+GET @~sales_data.csv file://C:\downloads\
+</code></pre><h3 id="1ffad46f-56a9-80cc-a87d-fa662c6dc1bf" class=""><strong>4.6 Snowpipe - Continuous Loading</strong></h3><h3 id="1ffad46f-56a9-807a-a71a-c22ceaae2b99" class=""><strong>Snowpipe Setup Pattern:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80df-9ea0-eada619d4ea0" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Create Pipe:
+CREATE PIPE pipe_name
+AUTO_INGEST = TRUE
+AS
+COPY INTO table_name
+FROM @external_stage
+FILE_FORMAT = (TYPE = &#x27;JSON&#x27;);
+
+-- Check Pipe Status:
+SELECT SYSTEM$PIPE_STATUS(&#x27;pipe_name&#x27;);
+
+-- Refresh Pipe:
+ALTER PIPE pipe_name REFRESH;
+</code></pre><h3 id="1ffad46f-56a9-800e-80c4-da274ed64f10" class=""><strong>4.7 Data Loading Error Handling</strong></h3><h3 id="1ffad46f-56a9-804b-9032-f52844a37cd8" class=""><strong>Error Monitoring Queries:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8091-acfc-e424876b1c17" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Check COPY command history:
+SELECT *
+FROM TABLE(INFORMATION_SCHEMA.COPY_HISTORY(
+    TABLE_NAME =&gt; &#x27;table_name&#x27;,
+    START_TIME =&gt; DATEADD(hours, -1, CURRENT_TIMESTAMP())
+));
+
+-- Validate before loading:
+COPY INTO table_name
+FROM @stage_name
+VALIDATION_MODE = &#x27;RETURN_ERRORS&#x27;
+FILE_FORMAT = (TYPE = &#x27;CSV&#x27;);
+</code></pre><hr id="1ffad46f-56a9-8076-bf59-e33446896dff"/><h2 id="1ffad46f-56a9-80e8-952c-f330a0959015" class="">SECTION 5: DATA TRANSFORMATIONS (20% Weight - Second Highest!)</h2><h3 id="1ffad46f-56a9-80a1-b603-cae577dea12b" class="">🔄 <strong>Semi-Structured Data Types</strong></h3><h3 id="1ffad46f-56a9-80a8-8377-da6f1218c5dd" class=""><strong>5.1 The &quot;VOA&quot; Data Types</strong></h3><table id="1ffad46f-56a9-80e8-9897-c61cf37ffc29" class="simple-table"><tbody><tr id="1ffad46f-56a9-8091-9e02-fc2801d68392"><td id="Nt_z" class="">Type</td><td id="~n;t" class="">Purpose</td><td id="OQcp" class="">Max Size</td><td id="}&gt;?d" class="">Memory Aid</td></tr><tr id="1ffad46f-56a9-8018-bae8-c5261eeca2d8"><td id="Nt_z" class=""><strong>VARIANT</strong></td><td id="~n;t" class="">Universal semi-structured</td><td id="OQcp" class="">16MB (128MB in 2025_03)</td><td id="}&gt;?d" class=""><strong>V</strong>ersatile <strong>V</strong>ariant</td></tr><tr id="1ffad46f-56a9-80df-8ee9-fc0f1ff4ed56"><td id="Nt_z" class=""><strong>OBJECT</strong></td><td id="~n;t" class="">Key-value pairs</td><td id="OQcp" class="">16MB (128MB in 2025_03)</td><td id="}&gt;?d" class=""><strong>O</strong>bject <strong>O</strong>rganized</td></tr><tr id="1ffad46f-56a9-8040-85de-ee20edb6a2a3"><td id="Nt_z" class=""><strong>ARRAY</strong></td><td id="~n;t" class="">Ordered list</td><td id="OQcp" class="">16MB (128MB in 2025_03)</td><td id="}&gt;?d" class=""><strong>A</strong>rray <strong>A</strong>rranged</td></tr></tbody></table><h3 id="1ffad46f-56a9-800c-955c-f24fc4770480" class=""><strong>5.2 JSON Data Access Patterns</strong></h3><h3 id="1ffad46f-56a9-803c-bac6-f46a079bd98f" class=""><strong>Path Notation Syntax:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-809c-9cf4-e03860ea6fa7" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Dot Notation:
+SELECT json_col:level1.level2.level3::STRING
+FROM table_name;
+
+-- Bracket Notation:
+SELECT json_col[&#x27;level1&#x27;][&#x27;level2&#x27;][0]::STRING
+FROM table_name;
+
+-- Mixed Notation:
+SELECT json_col:events[0].event_type::STRING
+FROM table_name;
+</code></pre><h3 id="1ffad46f-56a9-803e-9c41-c8787c8e1826" class=""><strong>Critical JSON Functions:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8029-aa63-cc484616c5ed" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Parse JSON string:
+SELECT PARSE_JSON(&#x27;{&quot;name&quot;:&quot;John&quot;,&quot;age&quot;:30}&#x27;);
+
+-- Check if valid JSON:
+SELECT TRY_PARSE_JSON(&#x27;invalid json&#x27;); -- Returns NULL
+
+-- Get object keys:
+SELECT OBJECT_KEYS(json_column);
+
+-- Array length:
+SELECT ARRAY_SIZE(json_column:events);
+</code></pre><h3 id="1ffad46f-56a9-80aa-babd-dc8a3e765d64" class=""><strong>5.3 FLATTEN Function - Master Pattern</strong></h3><h3 id="1ffad46f-56a9-80d7-99ab-e26448a0adbe" class=""><strong>FLATTEN Syntax Template:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80c7-97ad-fbe6a03d6158" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Basic FLATTEN:
+SELECT f.value
+FROM table_name,
+LATERAL FLATTEN(INPUT =&gt; json_column:array_field) AS f;
+
+-- Advanced FLATTEN with parameters:
+SELECT f.seq, f.key, f.path, f.index, f.value
+FROM table_name,
+LATERAL FLATTEN(
+    INPUT =&gt; json_column:events,
+    PATH =&gt; &#x27;items&#x27;,
+    OUTER =&gt; TRUE,
+    RECURSIVE =&gt; FALSE,
+    MODE =&gt; &#x27;ARRAY&#x27;
+) AS f;
+</code></pre><h3 id="1ffad46f-56a9-80f0-a8c0-c99dac1c4304" class=""><strong>FLATTEN Output Columns:</strong></h3><table id="1ffad46f-56a9-80f0-99d9-c03d79cca937" class="simple-table"><tbody><tr id="1ffad46f-56a9-80b2-b7f0-e2afdadb633d"><td id="F}eu" class="">Column</td><td id="WpX&lt;" class="">Description</td><td id="FrfS" class="">Use Case</td></tr><tr id="1ffad46f-56a9-8001-97af-da177167bd36"><td id="F}eu" class=""><strong>SEQ</strong></td><td id="WpX&lt;" class="">Unique sequence number</td><td id="FrfS" class="">Ordering</td></tr><tr id="1ffad46f-56a9-80a3-a561-c58de9de99ad"><td id="F}eu" class=""><strong>KEY</strong></td><td id="WpX&lt;" class="">Key name for objects</td><td id="FrfS" class="">Object processing</td></tr><tr id="1ffad46f-56a9-809d-ba52-f9fec6deef98"><td id="F}eu" class=""><strong>PATH</strong></td><td id="WpX&lt;" class="">Path to element</td><td id="FrfS" class="">Debugging</td></tr><tr id="1ffad46f-56a9-80c1-a8d1-e54162a25809"><td id="F}eu" class=""><strong>INDEX</strong></td><td id="WpX&lt;" class="">Array index</td><td id="FrfS" class="">Array processing</td></tr><tr id="1ffad46f-56a9-807c-8e90-d0a15ea60bbf"><td id="F}eu" class=""><strong>VALUE</strong></td><td id="WpX&lt;" class="">Actual value</td><td id="FrfS" class="">Data extraction</td></tr><tr id="1ffad46f-56a9-80e9-a9e2-d878002f84e7"><td id="F}eu" class=""><strong>THIS</strong></td><td id="WpX&lt;" class="">Current element</td><td id="FrfS" class="">Context</td></tr></tbody></table><h3 id="1ffad46f-56a9-80c6-9eef-d9c7306e3964" class=""><strong>5.4 Data Transformation During COPY</strong></h3><h3 id="1ffad46f-56a9-8078-abae-e5d3e275ff33" class=""><strong>COPY Transformations:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80e9-857c-fbeae638b035" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Column reordering &amp; casting:
+COPY INTO target_table (col1, col2, col3)
+FROM (
+    SELECT
+        $3::VARCHAR,           -- Reorder columns
+        $1::NUMBER,            -- Cast data types
+        CURRENT_TIMESTAMP(),   -- Add audit columns
+        $2::DATE
+    FROM @stage_name
+)
+FILE_FORMAT = (TYPE = &#x27;CSV&#x27;);
+
+-- JSON field extraction:
+COPY INTO target_table (id, name, city)
+FROM (
+    SELECT
+        $1:id::NUMBER,
+        $1:profile.name::VARCHAR,
+        $1:address.city::VARCHAR
+    FROM @json_stage
+)
+FILE_FORMAT = (TYPE = &#x27;JSON&#x27;);
+</code></pre><h3 id="1ffad46f-56a9-807f-8520-fc6f9f44bd6a" class=""><strong>5.5 SQL Transformation Functions</strong></h3><h3 id="1ffad46f-56a9-80ca-a756-d08f60bf305c" class=""><strong>String Functions:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80a1-9d15-e098a84e8cb2" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Common patterns:
+UPPER(column_name)
+LOWER(column_name)
+TRIM(column_name)
+SUBSTRING(column_name, start, length)
+REGEXP_REPLACE(column_name, &#x27;pattern&#x27;, &#x27;replacement&#x27;)
+SPLIT(column_name, &#x27;delimiter&#x27;)
+</code></pre><h3 id="1ffad46f-56a9-8089-a4b9-d486318817c6" class=""><strong>Date/Time Functions:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8092-9f87-c34215ef9880" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Date manipulation:
+DATE_TRUNC(&#x27;MONTH&#x27;, date_column)
+DATEADD(&#x27;DAY&#x27;, 7, date_column)
+DATEDIFF(&#x27;DAYS&#x27;, start_date, end_date)
+TO_DATE(string_column, &#x27;YYYY-MM-DD&#x27;)
+CURRENT_TIMESTAMP()
+</code></pre><h3 id="1ffad46f-56a9-807c-b695-d394dca3b372" class=""><strong>Window Functions:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80ce-8bd1-e680ca7886b3" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Ranking and analytics:
+ROW_NUMBER() OVER (PARTITION BY col1 ORDER BY col2)
+RANK() OVER (ORDER BY sales DESC)
+LAG(column_name, 1) OVER (ORDER BY date_col)
+SUM(amount) OVER (PARTITION BY customer_id)
+</code></pre><h3 id="1ffad46f-56a9-8042-9bd2-decdf80d668b" class=""><strong>5.6 Advanced Transformation Techniques</strong></h3><h3 id="1ffad46f-56a9-80b5-a1af-f8c1f3c56766" class=""><strong>Pivoting Data:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80b4-831d-c9325ad27305" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- PIVOT example:
+SELECT *
+FROM (
+    SELECT customer_id, product, quantity
+    FROM sales_data
+)
+PIVOT (
+    SUM(quantity)
+    FOR product IN (&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;)
+) AS p;
+</code></pre><h3 id="1ffad46f-56a9-8099-9043-d3f592ea6b00" class=""><strong>User-Defined Functions (UDFs):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8040-9c56-e282b42387cf" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- JavaScript UDF:
+CREATE FUNCTION calculate_tax(price FLOAT, rate FLOAT)
+RETURNS FLOAT
+LANGUAGE JAVASCRIPT
+AS &#x27;
+    return PRICE * (1 + RATE);
+&#x27;;
+
+-- SQL UDF:
+CREATE FUNCTION full_name(first VARCHAR, last VARCHAR)
+RETURNS VARCHAR
+AS (first || &#x27; &#x27; || last);
+</code></pre><hr id="1ffad46f-56a9-809f-8f56-f2b6919f504f"/><h2 id="1ffad46f-56a9-80da-8db3-f75fe7abbc8b" class="">SECTION 6: DATA PROTECTION AND DATA SHARING (10% Weight)</h2><h3 id="1ffad46f-56a9-808f-9a9c-caf41660e23b" class="">🛡️ <strong>Data Protection Features</strong></h3><h3 id="1ffad46f-56a9-8049-9e5f-d8b84d167409" class=""><strong>6.1 Time Travel - &quot;GURU&quot; Memory Aid</strong></h3><table id="1ffad46f-56a9-80cd-919e-fa44ec1041b5" class="simple-table"><tbody><tr id="1ffad46f-56a9-803f-bd4e-c3f9d2032651"><td id="q@u_" class="">Edition</td><td id="eN&gt;D" class="">Time Travel Period</td><td id="qCMM" class="">Memory Aid</td></tr><tr id="1ffad46f-56a9-803c-bf6b-d361e6efed65"><td id="q@u_" class=""><strong>Standard</strong></td><td id="eN&gt;D" class="">1 day</td><td id="qCMM" class=""><strong>S</strong>tandard = <strong>1</strong> day</td></tr><tr id="1ffad46f-56a9-809d-87e1-c72fc6f86389"><td id="q@u_" class=""><strong>Enterprise</strong></td><td id="eN&gt;D" class="">90 days (default)</td><td id="qCMM" class=""><strong>E</strong>nterprise = <strong>90</strong> days</td></tr><tr id="1ffad46f-56a9-8040-9c9c-e4fae9840d20"><td id="q@u_" class=""><strong>Business Critical</strong></td><td id="eN&gt;D" class="">90 days</td><td id="qCMM" class=""><strong>BC</strong> = <strong>90</strong> days</td></tr><tr id="1ffad46f-56a9-8003-9d26-d7243095b803"><td id="q@u_" class=""><strong>VPS</strong></td><td id="eN&gt;D" class="">90 days</td><td id="qCMM" class=""><strong>VPS</strong> = <strong>90</strong> days</td></tr></tbody></table><h3 id="1ffad46f-56a9-809f-89d5-ef2e78852236" class=""><strong>Time Travel Syntax Patterns:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8016-87f6-f5b4ac1f81ec" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Query historical data:
+SELECT * FROM table_name AT (TIMESTAMP =&gt; &#x27;2024-01-15 10:00:00&#x27;);
+SELECT * FROM table_name AT (OFFSET =&gt; -3600); -- 1 hour ago
+SELECT * FROM table_name AT (STATEMENT =&gt; &#x27;query_id&#x27;);
+
+-- Clone from historical point:
+CREATE TABLE backup_table
+CLONE original_table
+AT (TIMESTAMP =&gt; &#x27;2024-01-15 09:00:00&#x27;);
+
+-- Restore table (UNDROP):
+DROP TABLE important_table;
+UNDROP TABLE important_table;
+</code></pre><h3 id="1ffad46f-56a9-8030-a69e-f47538e5efd1" class=""><strong>6.2 Fail-Safe - &quot;7-Day Safety Net&quot;</strong></h3><ul id="1ffad46f-56a9-8081-b03f-f39ee5920a9f" class="bulleted-list"><li style="list-style-type:disc"><strong>Duration</strong>: <strong>7 days</strong> (non-configurable)</li></ul><ul id="1ffad46f-56a9-8075-a1f4-edc6c7adff86" class="bulleted-list"><li style="list-style-type:disc"><strong>Access</strong>: <strong>Snowflake only</strong> (not customer accessible)</li></ul><ul id="1ffad46f-56a9-80af-81df-dc2794baba89" class="bulleted-list"><li style="list-style-type:disc"><strong>Starts</strong>: After Time Travel period expires</li></ul><ul id="1ffad46f-56a9-8070-8410-f5b0f81ea15e" class="bulleted-list"><li style="list-style-type:disc"><strong>Purpose</strong>: Data recovery by Snowflake Support</li></ul><h3 id="1ffad46f-56a9-803b-8efe-e85fcc72b18d" class=""><strong>6.3 Data Cloning - Zero-Copy Magic</strong></h3><h3 id="1ffad46f-56a9-80d1-be6d-e3c911423721" class=""><strong>Cloning Syntax Patterns:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8019-9945-d0eedf292158" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Database cloning:
+CREATE DATABASE dev_db CLONE prod_db;
+
+-- Schema cloning:
+CREATE SCHEMA test_schema CLONE prod_schema;
+
+-- Table cloning:
+CREATE TABLE backup_sales CLONE sales;
+
+-- Clone with Time Travel:
+CREATE TABLE monthly_backup
+CLONE sales
+AT (TIMESTAMP =&gt; &#x27;2024-01-01 00:00:00&#x27;);
+</code></pre><h3 id="1ffad46f-56a9-80a3-aeed-f2b35a1467e6" class=""><strong>Cloning Characteristics:</strong></h3><ul id="1ffad46f-56a9-80ee-9fe6-c5411fb4ad83" class="bulleted-list"><li style="list-style-type:disc">✅ <strong>Instant</strong>: No data copying</li></ul><ul id="1ffad46f-56a9-804e-a7f0-e9788d0ae4ee" class="bulleted-list"><li style="list-style-type:disc">✅ <strong>Storage efficient</strong>: Shared until changes</li></ul><ul id="1ffad46f-56a9-809f-95dd-c36161c5329e" class="bulleted-list"><li style="list-style-type:disc">✅ <strong>Independent</strong>: Changes don&#x27;t affect source</li></ul><ul id="1ffad46f-56a9-8026-b06c-e713fa00269b" class="bulleted-list"><li style="list-style-type:disc">✅ <strong>Metadata included</strong>: Constraints, indexes, etc.</li></ul><h3 id="1ffad46f-56a9-80f3-9c8b-edea7fa01553" class=""><strong>6.4 Data Encryption</strong></h3><h3 id="1ffad46f-56a9-808a-a787-c41a6e07fecb" class=""><strong>Encryption Layers:</strong></h3><table id="1ffad46f-56a9-8039-ab1b-e537b4c43ae3" class="simple-table"><tbody><tr id="1ffad46f-56a9-80ef-bbfd-e879a102b04b"><td id="zS=&gt;" class="">Layer</td><td id="OHB}" class="">Type</td><td id="`L]{" class="">Key Management</td></tr><tr id="1ffad46f-56a9-804f-a195-e0e6339947a5"><td id="zS=&gt;" class=""><strong>All Data</strong></td><td id="OHB}" class="">AES-256</td><td id="`L]{" class="">Automatic</td></tr><tr id="1ffad46f-56a9-806e-a0c7-d929dbfb09dc"><td id="zS=&gt;" class=""><strong>Network</strong></td><td id="OHB}" class="">TLS 1.2+</td><td id="`L]{" class="">Automatic</td></tr><tr id="1ffad46f-56a9-8062-9b38-f62f5a162e75"><td id="zS=&gt;" class=""><strong>End-to-End</strong></td><td id="OHB}" class="">Client-side</td><td id="`L]{" class="">Optional</td></tr></tbody></table><h3 id="1ffad46f-56a9-8032-8d32-f585bfd39c2e" class=""><strong>Customer-Managed Keys (Business Critical+):</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80a9-921b-df41f014a246" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- Enable customer-managed encryption:
+ALTER ACCOUNT SET ENCRYPTION_KEY_SIZE = 256;
+</code></pre><h3 id="1ffad46f-56a9-805e-8b54-d0451958d388" class=""><strong>6.5 Data Sharing Architecture</strong></h3><h3 id="1ffad46f-56a9-808a-b861-c2b6dd9b7ef2" class=""><strong>6.6 Account Types for Sharing:</strong></h3><table id="1ffad46f-56a9-8062-acdc-d3e081fe5435" class="simple-table"><tbody><tr id="1ffad46f-56a9-8093-8aad-e1cb542b8e31"><td id="YajO" class="">Account Type</td><td id="YsxF" class="">Purpose</td><td id="j&lt;J=" class="">Billing</td></tr><tr id="1ffad46f-56a9-8024-a8d5-e0b74928fd84"><td id="YajO" class=""><strong>Provider Account</strong></td><td id="YsxF" class="">Shares data</td><td id="j&lt;J=" class="">Pays for compute</td></tr><tr id="1ffad46f-56a9-8078-bede-ea0e157762f2"><td id="YajO" class=""><strong>Consumer Account</strong></td><td id="YsxF" class="">Receives shares</td><td id="j&lt;J=" class="">Pays for compute</td></tr><tr id="1ffad46f-56a9-80d4-b733-fb6ffa4b8810"><td id="YajO" class=""><strong>Reader Account</strong></td><td id="YsxF" class="">Read-only access</td><td id="j&lt;J=" class="">Provider pays</td></tr></tbody></table><h3 id="1ffad46f-56a9-80d8-a9db-f11521e8386f" class=""><strong>Data Sharing Workflow:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-80fb-aae9-d011120776a4" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">-- 1. Create Share (Provider):
+CREATE SHARE sales_share;
+
+-- 2. Grant access to objects:
+GRANT USAGE ON DATABASE sales_db TO SHARE sales_share;
+GRANT USAGE ON SCHEMA sales_db.public TO SHARE sales_share;
+GRANT SELECT ON TABLE sales_db.public.orders TO SHARE sales_share;
+
+-- 3. Add accounts to share:
+ALTER SHARE sales_share
+ADD ACCOUNTS = (&#x27;CONSUMER_ACCOUNT_1&#x27;, &#x27;CONSUMER_ACCOUNT_2&#x27;);
+
+-- 4. Consumer creates database from share:
+CREATE DATABASE shared_sales_db
+FROM SHARE provider_account.sales_share;
+</code></pre><h3 id="1ffad46f-56a9-80ea-8e63-ca7fd3a448fe" class=""><strong>6.7 Secure Data Sharing Features</strong></h3><h3 id="1ffad46f-56a9-8059-ab78-fc738c044721" class=""><strong>Row Access Policies:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8042-a96c-d8cc3469056d" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CREATE ROW ACCESS POLICY region_policy AS (region VARCHAR)
+RETURNS BOOLEAN -&gt;
+  CASE
+    WHEN CURRENT_ROLE() = &#x27;ADMIN&#x27; THEN TRUE
+    WHEN CURRENT_ROLE() = &#x27;SALES_EAST&#x27; AND region = &#x27;East&#x27; THEN TRUE
+    WHEN CURRENT_ROLE() = &#x27;SALES_WEST&#x27; AND region = &#x27;West&#x27; THEN TRUE
+    ELSE FALSE
+  END;
+
+-- Apply policy:
+ALTER TABLE sales_data
+ADD ROW ACCESS POLICY region_policy (region);
+</code></pre><h3 id="1ffad46f-56a9-805a-a6fb-e9e2c3e83b14" class=""><strong>Data Masking Policies:</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ffad46f-56a9-8019-a658-c92c5e33a3b5" class="code"><code class="language-SQL" style="white-space:pre-wrap;word-break:break-all">CREATE MASKING POLICY email_mask AS (val STRING)
+RETURNS STRING -&gt;
+  CASE
+    WHEN CURRENT_ROLE() IN (&#x27;ADMIN&#x27;, &#x27;SECURITY&#x27;) THEN val
+    ELSE REGEXP_REPLACE(val, &#x27;.+@&#x27;, &#x27;*****@&#x27;)
+  END;
+
+-- Apply masking:
+ALTER TABLE customers
+ALTER COLUMN email
+SET MASKING POLICY email_mask;
+</code></pre><h3 id="1ffad46f-56a9-8060-8681-eea813eb7ae6" class=""><strong>6.8 Marketplace and Data Exchange</strong></h3><h3 id="1ffad46f-56a9-8047-9878-fa6eb40c1d76" class=""><strong>Snowflake Marketplace:</strong></h3><ul id="1ffad46f-56a9-8086-8cd8-c506da648606" class="bulleted-list"><li style="list-style-type:disc"><strong>Public datasets</strong> available to all</li></ul><ul id="1ffad46f-56a9-8076-aa68-c30c30dbf7e6" class="bulleted-list"><li style="list-style-type:disc"><strong>Commercial data</strong> from verified providers</li></ul><ul id="1ffad46f-56a9-808f-b222-cf0957e00175" class="bulleted-list"><li style="list-style-type:disc"><strong>Easy discovery</strong> through Snowsight interface</li></ul><ul id="1ffad46f-56a9-80e3-b077-fe01a2037828" class="bulleted-list"><li style="list-style-type:disc"><strong>Instant access</strong> without ETL</li></ul><h3 id="1ffad46f-56a9-8038-833b-cef93f11569d" class=""><strong>Private Data Exchange:</strong></h3><ul id="1ffad46f-56a9-80f7-9680-e525580d5eec" class="bulleted-list"><li style="list-style-type:disc"><strong>Invitation-only</strong> sharing</li></ul><ul id="1ffad46f-56a9-80bc-be0d-fa152d5caee2" class="bulleted-list"><li style="list-style-type:disc"><strong>Controlled distribution</strong></li></ul><ul id="1ffad46f-56a9-8083-9746-c1d31c375ea2" class="bulleted-list"><li style="list-style-type:disc"><strong>Custom agreements</strong></li></ul><ul id="1ffad46f-56a9-80e5-ae6a-cfac4485c753" class="bulleted-list"><li style="list-style-type:disc"><strong>Enhanced security</strong></li></ul><hr id="1ffad46f-56a9-80ed-a659-dd0847c5a99a"/><h2 id="1ffad46f-56a9-80d0-90b6-cedee0f00fcc" class="">🎯 <strong>COMPLETE EXAM SUCCESS STRATEGY</strong></h2><h3 id="1ffad46f-56a9-806d-8145-fcd0bab8d1bf" class=""><strong>Final Memory Palace - &quot;CSS-APDT&quot;</strong></h3><ol type="1" id="1ffad46f-56a9-8046-a8c6-d4c8fcfa4842" class="numbered-list" start="1"><li><strong>C</strong>loud Architecture (25%)</li></ol><ol type="1" id="1ffad46f-56a9-8085-a5e0-e84ae915a01d" class="numbered-list" start="2"><li><strong>S</strong>ecurity &amp; Access (20%)</li></ol><ol type="1" id="1ffad46f-56a9-8056-aa80-c8a24927f2cc" class="numbered-list" start="3"><li><strong>S</strong>peed &amp; Performance (15%)</li></ol><ol type="1" id="1ffad46f-56a9-806d-a392-ca73425bddbb" class="numbered-list" start="4"><li><strong>A</strong>ccess Data (10% - Loading)</li></ol><ol type="1" id="1ffad46f-56a9-8015-9e95-c3ba3e07c11c" class="numbered-list" start="5"><li><strong>P</strong>rocess Data (20% - Transform)</li></ol><ol type="1" id="1ffad46f-56a9-80eb-866a-e98b6afd8578" class="numbered-list" start="6"><li><strong>D</strong>efend &amp; Share (10% - Protection)</li></ol><ol type="1" id="1ffad46f-56a9-80ac-8e75-e1cd91ac6bb8" class="numbered-list" start="7"><li><strong>T</strong>otal = 100%</li></ol><h3 id="1ffad46f-56a9-802f-94ac-fb7380ea6126" class=""><strong>High-Impact Study Areas (80/20 Rule):</strong></h3><ol type="1" id="1ffad46f-56a9-8024-8d83-cdd3247f2796" class="numbered-list" start="1"><li><strong>Virtual Warehouse sizing &amp; scaling</strong> (frequent questions)</li></ol><ol type="1" id="1ffad46f-56a9-8029-8b3d-d658139ff0b9" class="numbered-list" start="2"><li><strong>RBAC role hierarchy</strong> (always tested)</li></ol><ol type="1" id="1ffad46f-56a9-803e-9e7b-f8c49a4978ed" class="numbered-list" start="3"><li><strong>Time Travel by edition</strong> (guaranteed questions)</li></ol><ol type="1" id="1ffad46f-56a9-80cd-b679-fd398bf4cc47" class="numbered-list" start="4"><li><strong>COPY INTO syntax variations</strong> (multiple scenarios)</li></ol><ol type="1" id="1ffad46f-56a9-80b6-aa31-f8123d54e4b7" class="numbered-list" start="5"><li><strong>JSON path notation &amp; FLATTEN</strong> (semi-structured focus)</li></ol><ol type="1" id="1ffad46f-56a9-8046-9e9e-db43207fb0de" class="numbered-list" start="6"><li><strong>Data sharing workflow</strong> (conceptual understanding)</li></ol><h3 id="1ffad46f-56a9-808c-b613-eeb28838c215" class=""><strong>Day-Before-Exam Checklist:</strong></h3><p id="1ffad46f-56a9-8026-8a40-e95b3cb12bc9" class="">✅ Warehouse credit calculations by size</p><p id="1ffad46f-56a9-8017-90e5-c58e791400fa" class="">✅ Role inheritance (ACCOUNTADMIN → SYSADMIN → Custom)</p><p id="1ffad46f-56a9-80a6-b15d-c47c7d78242e" class="">✅ Time Travel: Standard(1d), Enterprise+(90d), Fail-safe(7d)</p><p id="1ffad46f-56a9-801d-80f8-df5351b5cd64" class="">✅ Stage types: @~ (user), @% (table), @stage (named)</p><p id="1ffad46f-56a9-80bd-a0b3-cc84faae3e3f" class="">✅ VARIANT vs OBJECT vs ARRAY differences</p><p id="1ffad46f-56a9-80fa-97aa-ea504c84505f" class="">✅ FLATTEN output columns: SEQ, KEY, PATH, INDEX, VALUE, THIS</p><p id="1ffad46f-56a9-80c0-96e3-c5fe4d5e0ecd" class="">✅ Clone vs Time Travel vs Fail-safe capabilities</p><p id="1ffad46f-56a9-80c9-a51c-cf05032f9cc8" class="">✅ Share creation and consumption workflow</p><h3 id="1ffad46f-56a9-8083-b70d-f71d3c8b0111" class=""><strong>Exam Day Tips:</strong></h3><ul id="1ffad46f-56a9-803e-abf6-caad8644357b" class="bulleted-list"><li style="list-style-type:disc"><strong>Read carefully</strong>: Multiple-select vs multiple-choice</li></ul><ul id="1ffad46f-56a9-8003-afeb-e1cfcd220fc6" class="bulleted-list"><li style="list-style-type:disc"><strong>Eliminate obviously wrong answers</strong> first</li></ul><ul id="1ffad46f-56a9-808b-8703-f27ab33c4770" class="bulleted-list"><li style="list-style-type:disc"><strong>Time management</strong>: ~1.15 minutes per question</li></ul><ul id="1ffad46f-56a9-8047-8760-e8689281748c" class="bulleted-list"><li style="list-style-type:disc"><strong>Flag and return</strong> to difficult questions</li></ul><ul id="1ffad46f-56a9-80de-b1a8-f265bdb84dda" class="bulleted-list"><li style="list-style-type:disc"><strong>Trust your preparation</strong> - you&#x27;ve got this!</li></ul><hr id="1ffad46f-56a9-8059-af86-fd8cc6fda0fd"/><p id="1ffad46f-56a9-809a-8732-d2742a1c9197" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
